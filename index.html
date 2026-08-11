@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Dulces 16 - Carla Ianina</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Pinyon+Script&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Pinyon+Script&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Premium Corregida (Verde Olivo Verdadero, Rose Gold y Dorado) */
-            --bg-pearl: #FCFBF8;       
-            --olive-dark: #3C4A2D;   /* Verde olivo profundo */
-            --olive-mid: #556B2F;    /* Verde olivo medio */
-            --rose-gold: #E5B5AA;    
-            --blush: #F4E7E4;        
+            /* Paleta Premium Editorial (Verde Olivo Tenue, Rose Gold Suave y Dorado) */
+            --bg-pearl: #FCFBF9;       
+            --olive-dark: #4A533E;   /* Verde olivo orgánico y tenue */
+            --olive-mid: #687157;    /* Verde olivo medio apagado */
+            --rose-gold: #DDA79D;    
+            --blush: #F7EFEB;        
             --gold-editorial: #CBA358; 
             --gold-light: #E8D09B;
-            --text-dark: #1A1A1A;      
-            --text-muted: #5A5A5A;
+            --text-dark: #2A2A2A;      
+            --text-muted: #666666;
             
             --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
         }
@@ -43,19 +43,19 @@
             right: 30px;
             width: 55px;
             height: 55px;
-            background: linear-gradient(135deg, var(--gold-editorial), #AA7C11);
+            background: linear-gradient(135deg, var(--gold-editorial), #9C7E3A);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 10px 25px rgba(203, 163, 88, 0.5);
+            box-shadow: 0 10px 25px rgba(203, 163, 88, 0.4);
             z-index: 2000;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px) scale(0.9);
             transition: all 0.6s var(--transition-smooth);
-            border: 2px solid rgba(255,255,255,0.4);
+            border: 1px solid rgba(255,255,255,0.6);
             outline: none;
         }
 
@@ -67,7 +67,7 @@
         }
 
         @keyframes pulse-music {
-            0% { box-shadow: 0 0 0 0 rgba(203, 163, 88, 0.6); }
+            0% { box-shadow: 0 0 0 0 rgba(203, 163, 88, 0.5); }
             70% { box-shadow: 0 0 0 15px rgba(203, 163, 88, 0); }
             100% { box-shadow: 0 0 0 0 rgba(203, 163, 88, 0); }
         }
@@ -97,7 +97,7 @@
             50% { opacity: 0.8; transform: scale(1.2); }
         }
 
-        /* --- SOBRE EDITORIAL --- */
+        /* --- SOBRE EDITORIAL (Un solo tono) --- */
         #envelope-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, var(--olive-dark), var(--olive-mid)); 
@@ -114,14 +114,14 @@
         }
 
         .env-tag {
-            font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 8px;
-            text-transform: uppercase; color: var(--gold-editorial); font-weight: 500;
+            font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 8px;
+            text-transform: uppercase; color: var(--gold-light); font-weight: 500;
         }
 
         .env-title {
             font-family: 'Pinyon Script', cursive; font-size: clamp(65px, 10vw, 95px);
-            color: #FFFFFF; line-height: 1.2; margin-top: 5px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            color: #FFFFFF; line-height: 1.2; margin-top: 10px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
 
         .envelope-wrapper {
@@ -133,10 +133,12 @@
 
         .envelope {
             position: relative; width: clamp(280px, 80vw, 340px); height: clamp(180px, 55vw, 220px);
-            background-color: var(--blush); border-radius: 4px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4); 
+            background-color: #F8F6F0; /* Tono único marfil */
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
         }
 
+        /* Solapas del sobre creadas con el mismo tono pero variando sutilmente la iluminación */
         .envelope::before, .envelope::after {
             content: ''; position: absolute; top: 0; z-index: 2;
             border-top: clamp(90px, 27vw, 110px) solid transparent;
@@ -144,39 +146,39 @@
         }
 
         .envelope::before {
-            right: 0; border-right: clamp(140px, 40vw, 170px) solid var(--rose-gold);
-            border-bottom-color: var(--rose-gold);
+            right: 0; border-right: clamp(140px, 40vw, 170px) solid #EBE7DF; /* Sombra sutil derecha */
+            border-bottom-color: #EBE7DF;
         }
         
         .envelope::after {
-            left: 0; border-left: clamp(140px, 40vw, 170px) solid #EAC5BE;
-            border-bottom-color: #EAC5BE;
+            left: 0; border-left: clamp(140px, 40vw, 170px) solid #F0ECE4; /* Sombra sutil izquierda */
+            border-bottom-color: #F0ECE4;
         }
 
         .front-flap {
             position: absolute; top: 0; left: 0;
             border-left: clamp(140px, 40vw, 170px) solid transparent; 
             border-right: clamp(140px, 40vw, 170px) solid transparent;
-            border-top: clamp(100px, 30vw, 125px) solid var(--blush); transform-origin: top;
+            border-top: clamp(100px, 30vw, 125px) solid #F8F6F0; transform-origin: top;
             transition: transform 0.9s var(--transition-smooth); z-index: 4;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
+            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.08));
         }
 
-        .envelope-wrapper.open .front-flap { transform: rotateX(180deg); z-index: 1; }
+        .envelope-wrapper.open .front-flap { transform: rotateX(180deg); z-index: 1; filter: drop-shadow(0 -5px 8px rgba(0,0,0,0.05)); }
 
         .wax-seal {
             position: absolute; top: 85px; left: 50%; transform: translateX(-50%);
-            width: 55px; height: 55px; background: linear-gradient(135deg, #D4AF37, #AA7C11);
+            width: 50px; height: 50px; background: linear-gradient(135deg, #D4AF37, #9C7E3A);
             border-radius: 50%; z-index: 5; display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.3);
             transition: opacity 0.5s ease 0.1s, transform 0.5s ease;
         }
         
-        .wax-seal svg { width: 26px; height: 26px; fill: #fff; }
+        .wax-seal svg { width: 22px; height: 22px; fill: #fff; }
         .envelope-wrapper.open .wax-seal { opacity: 0; transform: translateX(-50%) scale(0.5); pointer-events: none; }
 
         .hint-text {
-            text-align: center; font-size: 12px; font-weight: 500; text-transform: uppercase; 
+            text-align: center; font-size: 11px; font-weight: 500; text-transform: uppercase; 
             letter-spacing: 5px; color: var(--gold-light); margin-top: 45px; 
             animation: pulse 2.5s infinite;
         }
@@ -196,23 +198,23 @@
 
         /* Clases de Animación Mejoradas */
         .anim-element { opacity: 0; transition: all 1.2s var(--transition-smooth); position: relative; z-index: 2; }
-        .anim-fade-up { transform: translateY(50px); }
+        .anim-fade-up { transform: translateY(40px); }
         .anim-fade-up.in-view { opacity: 1; transform: translateY(0); }
-        .anim-zoom { transform: scale(0.85); }
+        .anim-zoom { transform: scale(0.9); }
         .anim-zoom.in-view { opacity: 1; transform: scale(1); }
-        .anim-slide-left { transform: translateX(-50px); }
+        .anim-slide-left { transform: translateX(-40px); }
         .anim-slide-left.in-view { opacity: 1; transform: translateX(0); }
-        .anim-slide-right { transform: translateX(50px); }
+        .anim-slide-right { transform: translateX(40px); }
         .anim-slide-right.in-view { opacity: 1; transform: translateX(0); }
 
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.35s; }
-        .delay-4 { transition-delay: 0.5s; }
-        .delay-5 { transition-delay: 0.65s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.45s; }
+        .delay-5 { transition-delay: 0.6s; }
 
         .section-block {
-            width: 100%; padding: clamp(80px, 15vw, 120px) 20px; display: flex; flex-direction: column; align-items: center; text-align: center;
+            width: 100%; padding: clamp(80px, 12vw, 110px) 20px; display: flex; flex-direction: column; align-items: center; text-align: center;
             position: relative; overflow: hidden;
         }
 
@@ -222,151 +224,155 @@
 
         /* Tipografía Editorial */
         .tag-line {
-            font-family: 'Cinzel', serif; font-size: clamp(13px, 3vw, 15px); letter-spacing: 6px;
-            text-transform: uppercase; color: var(--gold-editorial); margin-bottom: 25px; font-weight: 600;
+            font-family: 'Cinzel', serif; font-size: clamp(12px, 3vw, 14px); letter-spacing: 6px;
+            text-transform: uppercase; color: var(--gold-editorial); margin-bottom: 25px; font-weight: 500;
         }
 
         .title-script {
-            font-family: 'Pinyon Script', cursive; font-size: clamp(75px, 15vw, 100px);
-            color: var(--olive-dark); margin-bottom: 20px; line-height: 1.1; font-weight: 400;
+            font-family: 'Pinyon Script', cursive; font-size: clamp(70px, 14vw, 95px);
+            color: var(--olive-dark); margin-bottom: 15px; line-height: 1.1; font-weight: 400;
         }
 
         .body-serif {
-            font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 5vw, 26px);
+            font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 4.5vw, 24px);
             line-height: 1.6; color: var(--text-muted); font-style: italic;
-            max-width: 650px; padding: 0 15px; font-weight: 400;
+            max-width: 600px; padding: 0 15px; font-weight: 400;
         }
 
         .bg-olive .title-script, .bg-olive .body-serif { color: #ffffff; }
-        .bg-olive .text-muted { color: #cccccc; }
+        .bg-olive .text-muted { color: #D1D4CC; }
 
-        .line-divider { width: 1px; height: 70px; background: linear-gradient(to bottom, transparent, var(--gold-editorial), transparent); margin: 35px auto; }
-        .line-horizontal { width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-editorial), transparent); margin: 40px auto; }
+        .line-divider { width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--gold-editorial), transparent); margin: 30px auto; }
+        .line-horizontal { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-editorial), transparent); margin: 35px auto; }
 
-        /* Marcos Fotográficos */
+        /* Marco Fotográfico Editorial (Sin barra rosa) */
         .photo-frame {
-            width: 100%; max-width: 420px; margin: 40px auto;
-            box-shadow: 0 25px 60px rgba(60, 74, 45, 0.15); border-radius: 200px 200px 0 0;
-            overflow: hidden; border: 6px solid var(--rose-gold); position: relative; z-index: 2;
+            width: 100%; max-width: 400px; margin: 40px auto;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.08); border-radius: 200px 200px 0 0;
+            overflow: hidden; 
+            border: 1px solid var(--gold-editorial); /* Línea dorada fina */
+            padding: 6px; /* Efecto paspartú editorial */
+            background: #fff;
+            position: relative; z-index: 2;
         }
-        .bg-olive .photo-frame { border-color: var(--gold-editorial); box-shadow: 0 25px 60px rgba(0,0,0,0.4); }
-        .photo-frame img { width: 100%; display: block; transition: transform 0.8s ease; }
-        .photo-frame:hover img { transform: scale(1.05); }
+        .bg-olive .photo-frame { border-color: rgba(255,255,255,0.2); background: transparent; box-shadow: 0 20px 50px rgba(0,0,0,0.3); padding: 0; border: 1px solid var(--gold-light); }
+        .photo-frame img { width: 100%; display: block; border-radius: 194px 194px 0 0; transition: transform 1s ease; }
+        .photo-frame:hover img { transform: scale(1.03); }
+        .bg-olive .photo-frame img { border-radius: 194px 194px 0 0; }
 
         .info-title {
-            font-family: 'Cinzel', serif; font-size: clamp(12px, 3vw, 14px); letter-spacing: 4px; line-height: 1.4;
-            text-transform: uppercase; color: var(--gold-editorial); margin-bottom: 15px; font-weight: 600;
+            font-family: 'Cinzel', serif; font-size: clamp(11px, 3vw, 13px); letter-spacing: 5px; line-height: 1.4;
+            text-transform: uppercase; color: var(--gold-editorial); margin-bottom: 12px; font-weight: 500;
         }
 
         .info-data {
             font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 7vw, 42px);
-            color: var(--olive-dark); margin-bottom: 5px; font-weight: 500; line-height: 1.3;
+            color: var(--olive-dark); margin-bottom: 5px; font-weight: 400; line-height: 1.2;
         }
         .bg-olive .info-data { color: #ffffff; }
 
         /* Widget de Calendario Editorial */
         .calendar-wrapper {
-            width: 100%; max-width: 360px; margin: 40px auto; padding: 40px 25px;
-            background: #fff; border-radius: 12px; box-shadow: 0 25px 50px rgba(60, 74, 45, 0.08);
+            width: 100%; max-width: 340px; margin: 40px auto; padding: 40px 25px;
+            background: #fff; border-radius: 8px; box-shadow: 0 20px 40px rgba(74, 83, 62, 0.05);
             box-sizing: border-box; border: 1px solid rgba(203, 163, 88, 0.2); position: relative; z-index: 2;
         }
         .calendar-month {
-            font-family: 'Cinzel', serif; font-size: 22px; color: var(--olive-dark);
-            text-transform: uppercase; letter-spacing: 5px; margin-bottom: 35px; font-weight: 600;
+            font-family: 'Cinzel', serif; font-size: 20px; color: var(--olive-dark);
+            text-transform: uppercase; letter-spacing: 5px; margin-bottom: 30px; font-weight: 500;
         }
         .calendar-grid {
-            display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px;
+            display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;
             width: 100%; box-sizing: border-box;
         }
         .cal-header {
-            font-family: 'Montserrat', sans-serif; font-size: 12px;
-            font-weight: 600; color: var(--gold-editorial); padding-bottom: 12px;
+            font-family: 'Montserrat', sans-serif; font-size: 11px;
+            font-weight: 500; color: var(--gold-editorial); padding-bottom: 10px;
         }
         .cal-day {
             font-family: 'Cormorant Garamond', serif; font-size: 18px;
-            font-weight: 500; color: var(--text-muted); display: flex; justify-content: center; align-items: center;
+            font-weight: 400; color: var(--text-muted); display: flex; justify-content: center; align-items: center;
             aspect-ratio: 1;
         }
         .cal-day.active {
-            background: linear-gradient(135deg, var(--gold-editorial), #AA7C11); color: #fff; border-radius: 50%; 
-            font-weight: 600; box-shadow: 0 5px 15px rgba(203, 163, 88, 0.4); transform: scale(1.1);
+            background: linear-gradient(135deg, var(--gold-editorial), #9C7E3A); color: #fff; border-radius: 50%; 
+            font-weight: 500; box-shadow: 0 5px 15px rgba(203, 163, 88, 0.3); transform: scale(1.05);
         }
 
         /* Botones Premium */
         .btn-solid {
             display: inline-block; background-color: var(--olive-dark); color: #fff;
-            padding: 18px 45px; font-family: 'Montserrat', sans-serif; font-size: 12px;
-            font-weight: 500; letter-spacing: 4px; text-transform: uppercase;
+            padding: 16px 40px; font-family: 'Montserrat', sans-serif; font-size: 11px;
+            font-weight: 400; letter-spacing: 4px; text-transform: uppercase;
             text-decoration: none; border: 1px solid var(--olive-dark); cursor: pointer; border-radius: 30px;
             transition: all 0.4s ease; margin-top: 30px; position: relative; z-index: 5;
-            box-shadow: 0 10px 20px rgba(60, 74, 45, 0.2);
+            box-shadow: 0 10px 20px rgba(74, 83, 62, 0.15);
         }
-        .btn-solid:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(60, 74, 45, 0.3); border-color: var(--gold-editorial); }
+        .btn-solid:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(74, 83, 62, 0.2); border-color: var(--gold-editorial); }
         
-        .bg-olive .btn-solid { background-color: transparent; border: 1px solid var(--gold-editorial); color: var(--gold-light); }
-        .bg-olive .btn-solid:hover { background-color: var(--gold-editorial); color: var(--olive-dark); box-shadow: 0 15px 25px rgba(203, 163, 88, 0.3); }
+        .bg-olive .btn-solid { background-color: transparent; border: 1px solid var(--gold-editorial); color: var(--gold-light); box-shadow: none; }
+        .bg-olive .btn-solid:hover { background-color: var(--gold-editorial); color: var(--olive-dark); box-shadow: 0 15px 25px rgba(203, 163, 88, 0.2); }
 
         /* Itinerario Premium */
-        .timeline { position: relative; max-width: 400px; margin: 50px auto; padding: 20px 0; }
+        .timeline { position: relative; max-width: 380px; margin: 40px auto; padding: 15px 0; }
         .timeline::before {
-            content: ''; position: absolute; width: 2px; background: linear-gradient(to bottom, transparent, var(--gold-editorial), transparent);
+            content: ''; position: absolute; width: 1px; background: linear-gradient(to bottom, transparent, var(--gold-editorial), transparent);
             top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
         }
         .timeline-item {
-            display: flex; justify-content: flex-end; padding-right: 50%; position: relative; margin-bottom: 45px; width: 100%;
+            display: flex; justify-content: flex-end; padding-right: 50%; position: relative; margin-bottom: 40px; width: 100%;
         }
         .timeline-item:nth-child(even) { justify-content: flex-start; padding-right: 0; padding-left: 50%; }
         .timeline-dot {
-            position: absolute; width: 14px; height: 14px; background: var(--gold-editorial);
-            border-radius: 50%; top: 5px; right: -7px; z-index: 1; box-shadow: 0 0 15px rgba(203, 163, 88, 0.8);
-            border: 2px solid var(--olive-dark);
+            position: absolute; width: 10px; height: 10px; background: var(--gold-editorial);
+            border-radius: 50%; top: 6px; right: -5px; z-index: 1; box-shadow: 0 0 12px rgba(203, 163, 88, 0.6);
         }
-        .timeline-item:nth-child(even) .timeline-dot { left: -7px; }
-        .timeline-content { padding: 0 30px; text-align: right; }
+        .timeline-item:nth-child(even) .timeline-dot { left: -5px; }
+        .timeline-content { padding: 0 25px; text-align: right; }
         .timeline-item:nth-child(even) .timeline-content { text-align: left; }
-        .time { font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 16px; font-weight: 600; margin-bottom: 5px; letter-spacing: 2px;}
-        .event { font-family: 'Cormorant Garamond', serif; color: #fff; font-size: 26px; font-weight: 400; }
+        .time { font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 14px; font-weight: 500; margin-bottom: 5px; letter-spacing: 2px;}
+        .event { font-family: 'Cormorant Garamond', serif; color: #fff; font-size: 24px; font-weight: 400; font-style: italic; }
 
         /* Mapas & Formularios */
         .map-box {
-            width: 100%; max-width: 550px; height: 350px; margin: 30px auto;
-            overflow: hidden; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); position: relative; z-index: 2;
-            border: 2px solid rgba(203, 163, 88, 0.4);
+            width: 100%; max-width: 500px; height: 320px; margin: 30px auto;
+            overflow: hidden; border-radius: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); position: relative; z-index: 2;
+            border: 1px solid rgba(203, 163, 88, 0.3);
         }
-        .map-box iframe { width: 100%; height: 100%; border: none; filter: grayscale(15%) contrast(1.1); }
+        .map-box iframe { width: 100%; height: 100%; border: none; filter: grayscale(20%) contrast(1.1); }
 
-        .form-group { width: 100%; max-width: 420px; margin: 0 auto 25px auto; position: relative; z-index: 2; }
+        .form-group { width: 100%; max-width: 400px; margin: 0 auto 20px auto; position: relative; z-index: 2; }
         .input-line {
-            width: 100%; padding: 22px 0; background: transparent; border: none;
-            border-bottom: 1px solid rgba(0,0,0,0.15); color: var(--text-dark);
-            font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 400; outline: none;
+            width: 100%; padding: 20px 0; background: transparent; border: none;
+            border-bottom: 1px solid rgba(0,0,0,0.1); color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 300; outline: none;
             text-align: center; transition: border-color 0.4s;
         }
         .input-line:focus { border-bottom-color: var(--gold-editorial); }
         .input-line::placeholder { color: #A0A0A0; }
-        textarea.input-line { resize: vertical; min-height: 110px; }
+        textarea.input-line { resize: vertical; min-height: 100px; }
         select.input-line { appearance: none; text-align-last: center; cursor: pointer; }
         
         /* Pase VIP */
         .ticket-card {
-            width: 100%; max-width: 400px; margin: 40px auto; background: linear-gradient(145deg, #ffffff, var(--bg-pearl));
-            padding: 70px 30px; position: relative; text-align: center;
-            border-radius: 16px; box-shadow: 0 30px 60px rgba(60, 74, 45, 0.1);
-            border: 1px solid rgba(203, 163, 88, 0.4); z-index: 2;
+            width: 100%; max-width: 360px; margin: 35px auto; background: #fff;
+            padding: 60px 30px; position: relative; text-align: center;
+            border-radius: 8px; box-shadow: 0 20px 50px rgba(74, 83, 62, 0.08);
+            border: 1px solid rgba(203, 163, 88, 0.2); z-index: 2;
         }
         .ticket-card::before, .ticket-card::after {
             content: ''; position: absolute; top: 60%; transform: translateY(-50%);
-            width: 35px; height: 35px; background-color: var(--blush); border-radius: 50%;
-            box-shadow: inset 0 3px 8px rgba(0,0,0,0.06);
+            width: 30px; height: 30px; background-color: var(--blush); border-radius: 50%;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.04);
         }
-        .ticket-card::before { left: -17px; }
-        .ticket-card::after { right: -17px; }
+        .ticket-card::before { left: -15px; }
+        .ticket-card::after { right: -15px; }
 
         @media (max-width: 480px) {
-            .timeline::before { left: 25px; }
-            .timeline-item { justify-content: flex-start; padding-right: 0; padding-left: 55px; margin-bottom: 35px; }
-            .timeline-item:nth-child(even) { padding-left: 55px; }
-            .timeline-dot { left: 18px !important; }
+            .timeline::before { left: 20px; }
+            .timeline-item { justify-content: flex-start; padding-right: 0; padding-left: 45px; margin-bottom: 30px; }
+            .timeline-item:nth-child(even) { padding-left: 45px; }
+            .timeline-dot { left: 15px !important; }
             .timeline-content { text-align: left !important; padding: 0; }
         }
     </style>
@@ -418,20 +424,18 @@
             </div>
         </section>
 
-        <!-- Padres -->
-        <section class="section-block bg-blush">
+        <!-- Padres (Sección ajustada) -->
+        <section class="bg-blush" style="width: 100%; padding: 50px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 2;">
             <div class="anim-element anim-fade-up delay-1 info-title">Con el amor de mi madre</div>
-            <div class="anim-element anim-fade-up delay-2 info-data" style="font-size: clamp(28px, 6vw, 36px);">Gretel Martha Paloma Fuentes Cerda</div>
-            
-            <div class="anim-element anim-zoom delay-3 line-horizontal"></div>
+            <div class="anim-element anim-fade-up delay-2 info-data" style="font-size: clamp(26px, 5.5vw, 34px); margin-bottom: 0;">Gretel Martha Paloma Fuentes Cerda</div>
         </section>
 
         <!-- Fecha & Calendario -->
         <section class="section-block bg-pearl">
             <div class="anim-element anim-fade-up delay-1 info-title">Celebremos juntos el día</div>
-            <div class="anim-element anim-zoom delay-2 info-data" style="font-size: clamp(50px, 12vw, 65px); font-weight: 600; color: var(--gold-editorial); margin-top: 15px;">23</div>
-            <div class="anim-element anim-fade-up delay-3 info-data" style="font-size: clamp(28px, 6vw, 34px); text-transform: uppercase; letter-spacing: 5px;">Agosto</div>
-            <div class="anim-element anim-fade-up delay-4 info-data" style="font-size: 26px; color: var(--text-muted); letter-spacing: 2px;">2026</div>
+            <div class="anim-element anim-zoom delay-2 info-data" style="font-size: clamp(50px, 12vw, 65px); font-family: 'Cinzel', serif; font-weight: 400; color: var(--gold-editorial); margin-top: 15px;">23</div>
+            <div class="anim-element anim-fade-up delay-3 info-data" style="font-size: clamp(26px, 6vw, 32px); text-transform: uppercase; letter-spacing: 5px;">Agosto</div>
+            <div class="anim-element anim-fade-up delay-4 info-data" style="font-size: 24px; color: var(--text-muted); letter-spacing: 2px;">2026</div>
 
             <div class="anim-element anim-zoom delay-5 calendar-wrapper">
                 <div class="calendar-month">Agosto</div>
@@ -453,7 +457,7 @@
         <section class="section-block bg-olive">
             <div class="anim-element anim-slide-left delay-1 info-title" style="color: var(--gold-light);">Recepción</div>
             <div class="anim-element anim-slide-right delay-2 info-data">Grand Emerald</div>
-            <div class="anim-element anim-fade-up delay-3 tag-line" style="font-size: 15px; margin: 15px 0; color: var(--gold-editorial);">7:00 p.m.</div>
+            <div class="anim-element anim-fade-up delay-3 tag-line" style="font-size: 13px; margin: 10px 0; color: var(--gold-editorial);">7:00 p.m.</div>
             
             <div class="anim-element anim-zoom delay-4 map-box">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.7535505887317!2d-100.2608236!3d25.745662400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866294cb2f425b33%3A0x20416209275c60c8!2sGrand%20Emerald%20Eventos!5e0!3m2!1ses-419!2smx!4v1786417299226!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -462,7 +466,7 @@
         </section>
 
         <!-- Itinerario -->
-        <section class="section-block bg-olive" style="padding-top: 40px; border-top: 1px solid rgba(203, 163, 88, 0.2);">
+        <section class="section-block bg-olive" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05);">
             <div class="anim-element anim-fade-up delay-1 info-title" style="color: var(--gold-light);">Itinerario</div>
             <div class="anim-element anim-zoom line-horizontal" style="margin: 20px auto 40px auto; background: linear-gradient(to right, transparent, var(--gold-editorial), transparent);"></div>
             
@@ -515,11 +519,11 @@
         <!-- Dress Code -->
         <section class="section-block bg-pearl">
             <div class="anim-element anim-fade-up delay-1 info-title">Dress Code</div>
-            <div class="anim-element anim-zoom delay-2 info-data" style="font-family: 'Cinzel', serif; font-size: clamp(38px, 8vw, 50px); margin: 25px 0; letter-spacing: 6px; color: var(--olive-dark);">
+            <div class="anim-element anim-zoom delay-2 info-data" style="font-family: 'Cinzel', serif; font-size: clamp(34px, 7vw, 45px); margin: 20px 0; letter-spacing: 6px; color: var(--olive-dark);">
                 FORMAL
             </div>
             <div class="anim-element anim-fade-up delay-3 line-divider"></div>
-            <p class="anim-element anim-fade-up delay-4 body-serif" style="font-size: 22px;">
+            <p class="anim-element anim-fade-up delay-4 body-serif">
                 Para mantener la elegancia de la noche, se solicita amablemente asistir con vestimenta formal.
             </p>
         </section>
@@ -528,7 +532,7 @@
         <section class="section-block bg-blush">
             <div class="anim-element anim-fade-up delay-1 info-title">Momentos</div>
             <div class="anim-element anim-fade-up delay-2 info-data">Galería en Vivo</div>
-            <p class="anim-element anim-fade-up delay-3 body-serif" style="margin: 25px auto; font-size: 22px;">
+            <p class="anim-element anim-fade-up delay-3 body-serif" style="margin: 20px auto;">
                 Captura la magia de esta noche. Comparte todas las fotos y videos que tomes directamente en nuestro álbum digital.
             </p>
             <a href="https://drive.google.com/drive/folders/17w-j-CwkYndpIEyuaJg4fH6rKeX_V8DK?usp=sharing" target="_blank" class="anim-element anim-zoom delay-4 btn-solid">Subir mis Fotos</a>
@@ -538,12 +542,12 @@
         <section class="section-block bg-olive">
             <div class="anim-element anim-fade-up delay-1 info-title" style="color: var(--gold-light);">Música</div>
             <div class="anim-element anim-fade-up delay-2 info-data">Nuestra Playlist</div>
-            <p class="anim-element anim-fade-up delay-3 body-serif" style="margin: 20px auto 40px auto; font-size: 22px;">
+            <p class="anim-element anim-fade-up delay-3 body-serif" style="margin: 15px auto 35px auto;">
                 Ayúdame a crear el ambiente perfecto agregando tus canciones favoritas para la pista de baile.
             </p>
             
-            <div class="anim-element anim-zoom delay-4" style="width: 100%; max-width: 480px; position: relative; z-index: 2;">
-                <iframe data-testid="embed-iframe" style="border-radius:12px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid rgba(203, 163, 88, 0.3);" src="https://open.spotify.com/embed/playlist/4yisTGgJBiK4T3gnEDYd32?utm_source=generator&si=93e72acdae424957" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <div class="anim-element anim-zoom delay-4" style="width: 100%; max-width: 450px; position: relative; z-index: 2;">
+                <iframe data-testid="embed-iframe" style="border-radius:8px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border: 1px solid rgba(203, 163, 88, 0.2);" src="https://open.spotify.com/embed/playlist/4yisTGgJBiK4T3gnEDYd32?utm_source=generator&si=93e72acdae424957" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
             
             <a href="https://open.spotify.com/playlist/4yisTGgJBiK4T3gnEDYd32?si=f23301db45fb461a&pt=a7294ac15b37472cb1c85c21d70d579d" target="_blank" class="anim-element anim-fade-up delay-5 btn-solid">Agregar Canciones</a>
@@ -552,11 +556,11 @@
         <!-- Mesa de Regalos -->
         <section class="section-block bg-pearl">
             <div class="anim-element anim-fade-up delay-1 info-title">Mesa de Regalos</div>
-            <svg class="anim-element anim-zoom delay-2" viewBox="0 0 24 24" style="width: 55px; height: 55px; fill: var(--gold-editorial); margin: 25px 0; position: relative; z-index: 2; filter: drop-shadow(0 5px 10px rgba(203, 163, 88, 0.3));">
+            <svg class="anim-element anim-zoom delay-2" viewBox="0 0 24 24" style="width: 45px; height: 45px; fill: var(--gold-editorial); margin: 20px 0; position: relative; z-index: 2; filter: drop-shadow(0 3px 6px rgba(203, 163, 88, 0.2));">
                 <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
             <div class="anim-element anim-fade-up delay-3 info-data">Lluvia de Sobres</div>
-            <p class="anim-element anim-fade-up delay-4 body-serif" style="margin-top: 25px; font-size: 22px;">
+            <p class="anim-element anim-fade-up delay-4 body-serif" style="margin-top: 20px;">
                 El obsequio más hermoso es tu presencia. Si deseas tener un detalle adicional, habrá un buzón en la recepción para tu obsequio en efectivo.
             </p>
         </section>
@@ -568,23 +572,23 @@
             <div id="pases-section" style="display: none; width: 100%;">
                 <div class="anim-element anim-fade-up delay-1 info-title">Acceso al Evento</div>
                 <div class="anim-element anim-zoom delay-2 ticket-card">
-                    <div class="tag-line" style="margin-bottom: 30px;">Boleto Especial</div>
+                    <div class="tag-line" style="margin-bottom: 25px;">Boleto Especial</div>
                     
-                    <div class="body-serif" style="font-size: 24px; margin-bottom: 10px; color: var(--text-dark);">Pases Asignados</div>
-                    <div id="ticket-count" style="font-family: 'Cinzel', serif; font-size: 80px; font-weight: 700; color: var(--gold-editorial); line-height: 1;">
+                    <div class="body-serif" style="font-size: 20px; margin-bottom: 10px; color: var(--text-dark);">Pases Asignados</div>
+                    <div id="ticket-count" style="font-family: 'Cinzel', serif; font-size: 70px; font-weight: 500; color: var(--gold-editorial); line-height: 1;">
                         0
                     </div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-top: 40px;">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-top: 35px;">
                         Muestra esta pantalla al llegar
                     </div>
                 </div>
-                <div class="anim-element anim-fade-up line-horizontal" style="margin: 60px auto;"></div>
+                <div class="anim-element anim-fade-up line-horizontal" style="margin: 50px auto;"></div>
             </div>
 
             <!-- Formulario RSVP -->
             <div class="anim-element anim-fade-up delay-1 info-title">RSVP</div>
             <div class="anim-element anim-fade-up delay-2 info-data">Confirmar Asistencia</div>
-            <p class="anim-element anim-fade-up delay-3 body-serif" style="margin: 20px auto 40px auto; font-size: 22px;">
+            <p class="anim-element anim-fade-up delay-3 body-serif" style="margin: 15px auto 30px auto;">
                 Agradeceremos tu confirmación lo antes posible.
             </p>
             
@@ -606,14 +610,14 @@
                 </select>
             </div>
             
-            <button onclick="sendRSVP()" class="anim-element anim-fade-up delay-5 btn-solid" style="margin-bottom: 70px;">Confirmar por WhatsApp</button>
+            <button onclick="sendRSVP()" class="anim-element anim-fade-up delay-5 btn-solid" style="margin-bottom: 60px;">Confirmar por WhatsApp</button>
 
-            <div class="anim-element anim-zoom line-divider"></div>
+            <div class="anim-element anim-zoom line-divider" style="height: 40px; margin-bottom: 40px;"></div>
 
             <!-- Muro de Deseos -->
             <div class="anim-element anim-fade-up delay-1 info-title">Mensajes</div>
             <div class="anim-element anim-fade-up delay-2 info-data">Muro de los Deseos</div>
-            <div class="anim-element anim-fade-up delay-3 form-group" style="margin-top: 35px;">
+            <div class="anim-element anim-fade-up delay-3 form-group" style="margin-top: 25px;">
                 <input type="text" id="wish-name" class="input-line" placeholder="De parte de...">
             </div>
             <div class="anim-element anim-fade-up delay-4 form-group">
