@@ -7,12 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Pinyon+Script&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Premium: Rose Gold (más rosa), Champagne y acento Oliva */
-            --bg-pearl: rgba(252, 251, 249, 0.85); /* Transparencia para dejar ver el fondo */
-            --bg-champagne: rgba(247, 242, 236, 0.88); 
-            --bg-rosegold: rgba(253, 243, 244, 0.88);
-            
+            /* Paleta Premium: Rose Gold, Champagne y acento Oliva */
             --solid-pearl: #FCFBF9;
+            --bg-pearl: rgba(252, 251, 249, 0.82); 
+            --bg-champagne: rgba(247, 242, 236, 0.82); 
+            --bg-rosegold: rgba(253, 243, 244, 0.82);
+            
             --champagne-dark: #D4C1A5; 
             
             /* Rose Gold vibrante y rosado */
@@ -42,7 +42,7 @@
             background-color: var(--solid-pearl);
         }
 
-        /* --- FONDO GLOBAL CON TRANSPARENCIA --- */
+        /* --- FONDO GLOBAL VISIBLE --- */
         body::before {
             content: '';
             position: fixed;
@@ -50,7 +50,7 @@
             background-image: url('assets/fondo.jpg');
             background-size: cover;
             background-position: center;
-            opacity: 0.15; /* Mucha transparencia */
+            opacity: 0.45; /* Aumentado para que sea visible */
             z-index: -1;
             pointer-events: none;
         }
@@ -77,23 +77,12 @@
 
         .sticky-music-btn svg { width: 22px; height: 22px; fill: #fff; }
 
-        /* --- PARTICULAS DE LUZ --- */
-        .sparkle {
-            position: absolute;
-            background: radial-gradient(circle, rgba(217, 140, 147, 0.7) 0%, transparent 70%);
-            border-radius: 50%; pointer-events: none; opacity: 0; z-index: 1;
-            animation: twinkle 4s infinite ease-in-out;
-        }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(0.8); }
-            50% { opacity: 0.6; transform: scale(1.3); }
-        }
-
         /* --- SOBRE EDITORIAL --- */
         #envelope-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: var(--solid-pearl);
-            background-image: linear-gradient(rgba(252, 251, 249, 0.9), rgba(252, 251, 249, 0.9)), url('assets/fondo.jpg');
+            /* Gradiente muy tenue para permitir ver el fondo.jpg claramente */
+            background-image: linear-gradient(rgba(247, 242, 236, 0.3), rgba(247, 242, 236, 0.3)), url('assets/fondo.jpg');
             background-size: cover; background-position: center; background-repeat: no-repeat;
             z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 1.5s ease-in-out, visibility 1.5s;
@@ -109,7 +98,7 @@
 
         .env-tag {
             font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 10px;
-            text-transform: uppercase; color: var(--rosegold-main); font-weight: 500;
+            text-transform: uppercase; color: var(--rosegold-dark); font-weight: 600;
         }
 
         .env-title {
@@ -154,12 +143,19 @@
 
         .wax-seal {
             position: absolute; top: 50px; left: 50%; transform: translateX(-50%);
-            width: 120px; height: 120px; 
+            width: 140px; height: 140px; 
             z-index: 5; display: flex; justify-content: center; align-items: center;
             transition: opacity 0.5s ease 0.1s, transform 0.5s ease;
+            background: transparent; border: none; box-shadow: none;
         }
         
-        .wax-seal img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); }
+        /* Ajuste mix-blend-mode para eliminar fondo blanco del ícono de manera natural */
+        .wax-seal img { 
+            width: 100%; height: 100%; object-fit: contain; 
+            mix-blend-mode: multiply; 
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); 
+        }
+        
         .envelope-wrapper.open .wax-seal { opacity: 0; transform: translateX(-50%) scale(0.6); pointer-events: none; }
 
         .hint-text {
@@ -198,7 +194,8 @@
 
         .section-block {
             width: 100%; padding: clamp(90px, 12vw, 130px) 20px; display: flex; flex-direction: column; align-items: center; text-align: center;
-            position: relative; overflow: hidden; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+            position: relative; overflow: hidden; 
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); /* Difumina el fondo sutilmente debajo de las secciones */
         }
 
         .bg-pearl { background-color: var(--bg-pearl); }
@@ -222,43 +219,43 @@
             max-width: 680px; padding: 0 15px; font-weight: 400;
         }
 
-        .line-divider { width: 1px; height: 70px; background: linear-gradient(to bottom, transparent, var(--champagne-dark), transparent); margin: 35px auto; }
-        .line-horizontal { width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--champagne-dark), transparent); margin: 40px auto; }
+        .line-divider { width: 1px; height: 70px; background: linear-gradient(to bottom, transparent, var(--rosegold-main), transparent); margin: 35px auto; }
+        .line-horizontal { width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--rosegold-main), transparent); margin: 40px auto; }
 
-        /* --- HERO PORTADA PREMIUM --- */
+        /* --- HERO PORTADA PREMIUM TIPOGRÁFICA --- */
         #portada {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 0;
+            padding: 20px;
             background: transparent; /* Deja ver el fondo de body */
         }
-        
-        .hero-image-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-        }
-        
-        .hero-image-bg img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            /* Máscara de degradado para fusionar la foto con la siguiente sección */
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+
+        .hero-frame {
+            width: 100%; max-width: 500px;
+            border: 1px solid var(--rosegold-main);
+            padding: 60px 20px;
+            border-radius: 8px;
+            background: rgba(252, 251, 249, 0.85);
+            box-shadow: 0 20px 50px rgba(217, 140, 147, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        .hero-content {
-            position: relative; z-index: 2;
-            width: 100%; height: 100%;
-            display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-            padding-bottom: 12vh;
-            background: linear-gradient(to top, var(--solid-pearl) 0%, rgba(252,251,249,0.8) 30%, transparent 100%);
+        .hero-frame .title-script { 
+            font-size: clamp(75px, 16vw, 110px); 
+            line-height: 1; 
+            margin: 10px 0 20px 0;
+            color: var(--text-dark);
         }
 
-        .hero-content .title-script { font-size: clamp(90px, 18vw, 130px); text-shadow: 0 4px 20px rgba(255,255,255,0.8); }
+        .hero-date {
+            font-family: 'Montserrat', sans-serif; font-size: 14px; letter-spacing: 5px;
+            text-transform: uppercase; color: var(--rosegold-dark); font-weight: 500;
+            margin-top: 20px;
+        }
 
         .info-title {
             font-family: 'Cinzel', serif; font-size: clamp(12px, 3.5vw, 14px); letter-spacing: 5px; line-height: 1.4;
@@ -374,7 +371,7 @@
         }
         .ticket-card::before, .ticket-card::after {
             content: ''; position: absolute; top: 60%; transform: translateY(-50%);
-            width: 35px; height: 35px; background-color: var(--solid-pearl); border-radius: 50%;
+            width: 35px; height: 35px; background-color: var(--bg-rosegold); border-radius: 50%;
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.06);
             border-right: 1px solid rgba(217, 140, 147, 0.4);
         }
@@ -415,20 +412,18 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main id="main-invitation">
         
-        <!-- Portada Inmersiva sin Marcos -->
+        <!-- Portada Elegante Tipográfica -->
         <section id="portada">
-            <div class="hero-image-bg">
-                <img src="assets/foto1.jpg" alt="Carla Ianina" onerror="this.style.display='none'">
-            </div>
-            <div class="hero-content">
-                <div class="anim-element anim-fade-up delay-1 tag-line">Mis Dulces 16</div>
-                <h1 class="anim-element anim-zoom delay-2 title-script">Carla Ianina</h1>
-                <div class="anim-element anim-fade-up delay-3 line-divider"></div>
+            <div class="hero-frame anim-element anim-zoom delay-1">
+                <div class="tag-line" style="margin-bottom: 0;">Mis Dulces 16</div>
+                <h1 class="title-script">Carla Ianina</h1>
+                <div class="line-horizontal" style="margin: 0 auto; width: 60px;"></div>
+                <div class="hero-date">23 • 08 • 2026</div>
             </div>
         </section>
 
         <!-- Mensaje -->
-        <section class="section-block bg-pearl" style="padding-top: 20px;">
+        <section class="section-block bg-pearl" style="padding-top: 40px;">
             <p class="anim-element anim-fade-up delay-1 body-serif">
                 "Que este día brille tanto como la alegría que hay en mi corazón. Celebrar mis dieciséis años es un sueño hecho realidad, y el regalo más hermoso es poder compartirlo con las personas que más amo."
             </p>
@@ -470,8 +465,7 @@
             <div class="anim-element anim-fade-up delay-3 tag-line" style="font-size: 15px; margin: 10px 0; color: var(--rosegold-dark);">7:00 p.m.</div>
             
             <div class="anim-element anim-zoom delay-4 map-box">
-                <!-- Se retiró loading="lazy" y atributos innecesarios para que cargue inmediatamente sin problemas -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.7535505887317!2d-100.2608236!3d25.745662400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866294cb2f425b33%3A0x20416209275c60c8!2sGrand%20Emerald%20Eventos!5e0!3m2!1ses-419!2smx!4v1786417299226!5m2!1ses-419!2smx" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.7535505887317!2d-100.2608236!3d25.745662400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866294cb2f425b33%3A0x20416209275c60c8!2sGrand%20Emerald%20Eventos!5e0!3m2!1ses-419!2smx!4v1786417299226!5m2!1ses-419!2smx" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
             </div>
             <a href="https://maps.app.goo.gl/YAYn7usdA7gMgKjo7?g_st=ic" target="_blank" class="anim-element anim-fade-up delay-5 btn-solid">Abrir en Maps</a>
         </section>
@@ -486,7 +480,6 @@
                 <!-- Recepción -->
                 <div class="itinerary-item anim-element anim-fade-up delay-1">
                     <div class="itinerary-icon-box">
-                        <!-- Icono Copas -->
                         <svg viewBox="0 0 24 24"><path d="M7 10v1a5 5 0 0 0 10 0v-1M12 16v5M9 21h6M7 6l1-3h8l1 3M7 6v4M17 6v4"/></svg>
                     </div>
                     <div class="itinerary-details">
@@ -498,7 +491,6 @@
                 <!-- Vals -->
                 <div class="itinerary-item anim-element anim-fade-up delay-2">
                     <div class="itinerary-icon-box">
-                        <!-- Icono Música/Baile -->
                         <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                     </div>
                     <div class="itinerary-details">
@@ -510,7 +502,6 @@
                 <!-- Cena -->
                 <div class="itinerary-item anim-element anim-fade-up delay-3">
                     <div class="itinerary-icon-box">
-                        <!-- Icono Cubiertos -->
                         <svg viewBox="0 0 24 24"><path d="M7 2v13M7 22v-7M3 2v6a4 4 0 0 0 8 0V2M18 2v20M18 2s-3.5 2-3.5 7c0 3 3.5 4 3.5 4"/></svg>
                     </div>
                     <div class="itinerary-details">
@@ -522,7 +513,6 @@
                 <!-- Balet -->
                 <div class="itinerary-item anim-element anim-fade-up delay-4">
                     <div class="itinerary-icon-box">
-                        <!-- Icono Estrellas / Magia -->
                         <svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1.5 7-6.5-3.5L5.5 22 7 15l-5-5 7-1z"/></svg>
                     </div>
                     <div class="itinerary-details">
@@ -534,7 +524,6 @@
                 <!-- Snack -->
                 <div class="itinerary-item anim-element anim-fade-up delay-5">
                     <div class="itinerary-icon-box">
-                        <!-- Icono Snack/Cóctel -->
                         <svg viewBox="0 0 24 24"><path d="M6 3h12l-2 10H8L6 3zM10 21h4M12 13v8M8 3l1-2h6l1 2"/></svg>
                     </div>
                     <div class="itinerary-details">
@@ -546,7 +535,6 @@
                 <!-- Fin del Evento -->
                 <div class="itinerary-item anim-element anim-fade-up delay-5">
                     <div class="itinerary-icon-box">
-                        <!-- Icono Luna/Noche -->
                         <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </div>
                     <div class="itinerary-details">
