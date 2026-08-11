@@ -7,16 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Pinyon+Script&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Premium Editorial (Verde Olivo Tenue, Rose Gold Suave y Dorado) */
+            /* Paleta Premium: Rose Gold, Champagne y acentos Oliva */
             --bg-pearl: #FCFBF9;       
-            --olive-dark: #4A533E;   /* Verde olivo orgánico y tenue */
-            --olive-mid: #687157;    /* Verde olivo medio apagado */
-            --rose-gold: #DDA79D;    
-            --blush: #F7EFEB;        
-            --gold-editorial: #CBA358; 
-            --gold-light: #E8D09B;
-            --text-dark: #2A2A2A;      
-            --text-muted: #666666;
+            --bg-champagne: #F5EFEB; /* Champagne muy claro para fondos */
+            --bg-rosegold: #F9F1F0;  /* Rose gold super tenue para fondos */
+            
+            --champagne-dark: #D8C3A5; 
+            --rosegold-main: #C48B81;
+            --rosegold-dark: #A66E64;
+            
+            --olive-accent: #7D846C; /* Verde olivo solo para acentos y contrastes */
+            
+            --text-dark: #3D3833;      
+            --text-muted: #7A726A;
             
             --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
         }
@@ -43,12 +46,12 @@
             right: 30px;
             width: 55px;
             height: 55px;
-            background: linear-gradient(135deg, var(--gold-editorial), #9C7E3A);
+            background: linear-gradient(135deg, var(--rosegold-main), var(--rosegold-dark));
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 10px 25px rgba(203, 163, 88, 0.4);
+            box-shadow: 0 10px 25px rgba(196, 139, 129, 0.4);
             z-index: 2000;
             cursor: pointer;
             opacity: 0;
@@ -67,9 +70,9 @@
         }
 
         @keyframes pulse-music {
-            0% { box-shadow: 0 0 0 0 rgba(203, 163, 88, 0.5); }
-            70% { box-shadow: 0 0 0 15px rgba(203, 163, 88, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(203, 163, 88, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(196, 139, 129, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(196, 139, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(196, 139, 129, 0); }
         }
 
         .sticky-music-btn:hover {
@@ -82,10 +85,10 @@
             fill: #fff;
         }
 
-        /* --- PARTICULAS DORADAS (Efecto Premium) --- */
+        /* --- PARTICULAS --- */
         .sparkle {
             position: absolute;
-            background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--champagne-dark) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             opacity: 0;
@@ -97,10 +100,14 @@
             50% { opacity: 0.8; transform: scale(1.2); }
         }
 
-        /* --- SOBRE EDITORIAL (Un solo tono) --- */
+        /* --- SOBRE EDITORIAL CON IMAGEN DE FONDO --- */
         #envelope-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, var(--olive-dark), var(--olive-mid)); 
+            background-color: var(--bg-champagne);
+            background-image: linear-gradient(rgba(61, 56, 51, 0.6), rgba(61, 56, 51, 0.6)), url('assets/fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 1.2s ease-in-out, visibility 1.2s;
         }
@@ -114,14 +121,14 @@
         }
 
         .env-tag {
-            font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 8px;
-            text-transform: uppercase; color: var(--gold-light); font-weight: 500;
+            font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 8px;
+            text-transform: uppercase; color: var(--champagne-dark); font-weight: 500;
         }
 
         .env-title {
             font-family: 'Pinyon Script', cursive; font-size: clamp(65px, 10vw, 95px);
             color: #FFFFFF; line-height: 1.2; margin-top: 10px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .envelope-wrapper {
@@ -133,12 +140,11 @@
 
         .envelope {
             position: relative; width: clamp(280px, 80vw, 340px); height: clamp(180px, 55vw, 220px);
-            background-color: #F8F6F0; /* Tono único marfil */
+            background-color: var(--bg-pearl); 
             border-radius: 4px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+            box-shadow: 0 20px 45px rgba(0,0,0,0.4); 
         }
 
-        /* Solapas del sobre creadas con el mismo tono pero variando sutilmente la iluminación */
         .envelope::before, .envelope::after {
             content: ''; position: absolute; top: 0; z-index: 2;
             border-top: clamp(90px, 27vw, 110px) solid transparent;
@@ -146,44 +152,46 @@
         }
 
         .envelope::before {
-            right: 0; border-right: clamp(140px, 40vw, 170px) solid #EBE7DF; /* Sombra sutil derecha */
-            border-bottom-color: #EBE7DF;
+            right: 0; border-right: clamp(140px, 40vw, 170px) solid #F0E8E6; 
+            border-bottom-color: #F0E8E6;
         }
         
         .envelope::after {
-            left: 0; border-left: clamp(140px, 40vw, 170px) solid #F0ECE4; /* Sombra sutil izquierda */
-            border-bottom-color: #F0ECE4;
+            left: 0; border-left: clamp(140px, 40vw, 170px) solid #F7EFEF; 
+            border-bottom-color: #F7EFEF;
         }
 
         .front-flap {
             position: absolute; top: 0; left: 0;
             border-left: clamp(140px, 40vw, 170px) solid transparent; 
             border-right: clamp(140px, 40vw, 170px) solid transparent;
-            border-top: clamp(100px, 30vw, 125px) solid #F8F6F0; transform-origin: top;
+            border-top: clamp(100px, 30vw, 125px) solid var(--bg-pearl); transform-origin: top;
             transition: transform 0.9s var(--transition-smooth); z-index: 4;
-            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.08));
+            filter: drop-shadow(0 5px 8px rgba(166, 110, 100, 0.1));
         }
 
-        .envelope-wrapper.open .front-flap { transform: rotateX(180deg); z-index: 1; filter: drop-shadow(0 -5px 8px rgba(0,0,0,0.05)); }
+        .envelope-wrapper.open .front-flap { transform: rotateX(180deg); z-index: 1; filter: drop-shadow(0 -5px 8px rgba(166, 110, 100, 0.05)); }
 
         .wax-seal {
             position: absolute; top: 85px; left: 50%; transform: translateX(-50%);
-            width: 50px; height: 50px; background: linear-gradient(135deg, #D4AF37, #9C7E3A);
+            width: 55px; height: 55px; 
             border-radius: 50%; z-index: 5; display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3); border: 2px solid rgba(255,255,255,0.4);
             transition: opacity 0.5s ease 0.1s, transform 0.5s ease;
+            background-color: var(--bg-pearl);
+            overflow: hidden;
         }
         
-        .wax-seal svg { width: 22px; height: 22px; fill: #fff; }
+        .wax-seal img { width: 100%; height: 100%; object-fit: cover; }
         .envelope-wrapper.open .wax-seal { opacity: 0; transform: translateX(-50%) scale(0.5); pointer-events: none; }
 
         .hint-text {
             text-align: center; font-size: 11px; font-weight: 500; text-transform: uppercase; 
-            letter-spacing: 5px; color: var(--gold-light); margin-top: 45px; 
-            animation: pulse 2.5s infinite;
+            letter-spacing: 5px; color: var(--champagne-light); margin-top: 45px; 
+            animation: pulse 2.5s infinite; color: #fff;
         }
 
-        @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
         @keyframes floatText { 0% { transform: translateY(0); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0); } }
 
         /* --- CONTENIDO PRINCIPAL --- */
@@ -193,10 +201,9 @@
         }
         
         body.content-active #main-invitation { display: flex; }
-
         @keyframes fadeInMain { to { opacity: 1; } }
 
-        /* Clases de Animación Mejoradas */
+        /* Animaciones */
         .anim-element { opacity: 0; transition: all 1.2s var(--transition-smooth); position: relative; z-index: 2; }
         .anim-fade-up { transform: translateY(40px); }
         .anim-fade-up.in-view { opacity: 1; transform: translateY(0); }
@@ -219,18 +226,18 @@
         }
 
         .bg-pearl { background-color: var(--bg-pearl); }
-        .bg-olive { background-color: var(--olive-dark); color: #ffffff; }
-        .bg-blush { background-color: var(--blush); }
+        .bg-champagne { background-color: var(--bg-champagne); }
+        .bg-rosegold { background-color: var(--bg-rosegold); }
 
         /* Tipografía Editorial */
         .tag-line {
             font-family: 'Cinzel', serif; font-size: clamp(12px, 3vw, 14px); letter-spacing: 6px;
-            text-transform: uppercase; color: var(--gold-editorial); margin-bottom: 25px; font-weight: 500;
+            text-transform: uppercase; color: var(--rosegold-dark); margin-bottom: 25px; font-weight: 500;
         }
 
         .title-script {
             font-family: 'Pinyon Script', cursive; font-size: clamp(70px, 14vw, 95px);
-            color: var(--olive-dark); margin-bottom: 15px; line-height: 1.1; font-weight: 400;
+            color: var(--olive-accent); margin-bottom: 15px; line-height: 1.1; font-weight: 400;
         }
 
         .body-serif {
@@ -239,46 +246,40 @@
             max-width: 600px; padding: 0 15px; font-weight: 400;
         }
 
-        .bg-olive .title-script, .bg-olive .body-serif { color: #ffffff; }
-        .bg-olive .text-muted { color: #D1D4CC; }
+        .line-divider { width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--champagne-dark), transparent); margin: 30px auto; }
+        .line-horizontal { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--champagne-dark), transparent); margin: 35px auto; }
 
-        .line-divider { width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--gold-editorial), transparent); margin: 30px auto; }
-        .line-horizontal { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-editorial), transparent); margin: 35px auto; }
-
-        /* Marco Fotográfico Editorial (Sin barra rosa) */
+        /* Marco Fotográfico */
         .photo-frame {
             width: 100%; max-width: 400px; margin: 40px auto;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.08); border-radius: 200px 200px 0 0;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.06); border-radius: 200px 200px 0 0;
             overflow: hidden; 
-            border: 1px solid var(--gold-editorial); /* Línea dorada fina */
-            padding: 6px; /* Efecto paspartú editorial */
+            border: 1px solid var(--champagne-dark); 
+            padding: 6px; 
             background: #fff;
             position: relative; z-index: 2;
         }
-        .bg-olive .photo-frame { border-color: rgba(255,255,255,0.2); background: transparent; box-shadow: 0 20px 50px rgba(0,0,0,0.3); padding: 0; border: 1px solid var(--gold-light); }
         .photo-frame img { width: 100%; display: block; border-radius: 194px 194px 0 0; transition: transform 1s ease; }
         .photo-frame:hover img { transform: scale(1.03); }
-        .bg-olive .photo-frame img { border-radius: 194px 194px 0 0; }
 
         .info-title {
             font-family: 'Cinzel', serif; font-size: clamp(11px, 3vw, 13px); letter-spacing: 5px; line-height: 1.4;
-            text-transform: uppercase; color: var(--gold-editorial); margin-bottom: 12px; font-weight: 500;
+            text-transform: uppercase; color: var(--rosegold-main); margin-bottom: 12px; font-weight: 500;
         }
 
         .info-data {
             font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 7vw, 42px);
-            color: var(--olive-dark); margin-bottom: 5px; font-weight: 400; line-height: 1.2;
+            color: var(--text-dark); margin-bottom: 5px; font-weight: 400; line-height: 1.2;
         }
-        .bg-olive .info-data { color: #ffffff; }
 
-        /* Widget de Calendario Editorial */
+        /* Widget de Calendario */
         .calendar-wrapper {
             width: 100%; max-width: 340px; margin: 40px auto; padding: 40px 25px;
-            background: #fff; border-radius: 8px; box-shadow: 0 20px 40px rgba(74, 83, 62, 0.05);
-            box-sizing: border-box; border: 1px solid rgba(203, 163, 88, 0.2); position: relative; z-index: 2;
+            background: #fff; border-radius: 8px; box-shadow: 0 20px 40px rgba(196, 139, 129, 0.05);
+            box-sizing: border-box; border: 1px solid rgba(216, 195, 165, 0.4); position: relative; z-index: 2;
         }
         .calendar-month {
-            font-family: 'Cinzel', serif; font-size: 20px; color: var(--olive-dark);
+            font-family: 'Cinzel', serif; font-size: 20px; color: var(--olive-accent);
             text-transform: uppercase; letter-spacing: 5px; margin-bottom: 30px; font-weight: 500;
         }
         .calendar-grid {
@@ -287,7 +288,7 @@
         }
         .cal-header {
             font-family: 'Montserrat', sans-serif; font-size: 11px;
-            font-weight: 500; color: var(--gold-editorial); padding-bottom: 10px;
+            font-weight: 500; color: var(--rosegold-main); padding-bottom: 10px;
         }
         .cal-day {
             font-family: 'Cormorant Garamond', serif; font-size: 18px;
@@ -295,28 +296,25 @@
             aspect-ratio: 1;
         }
         .cal-day.active {
-            background: linear-gradient(135deg, var(--gold-editorial), #9C7E3A); color: #fff; border-radius: 50%; 
-            font-weight: 500; box-shadow: 0 5px 15px rgba(203, 163, 88, 0.3); transform: scale(1.05);
+            background: linear-gradient(135deg, var(--rosegold-main), var(--rosegold-dark)); color: #fff; border-radius: 50%; 
+            font-weight: 500; box-shadow: 0 5px 15px rgba(196, 139, 129, 0.3); transform: scale(1.05);
         }
 
-        /* Botones Premium */
+        /* Botones (Acento Olivo) */
         .btn-solid {
-            display: inline-block; background-color: var(--olive-dark); color: #fff;
+            display: inline-block; background-color: var(--olive-accent); color: #fff;
             padding: 16px 40px; font-family: 'Montserrat', sans-serif; font-size: 11px;
             font-weight: 400; letter-spacing: 4px; text-transform: uppercase;
-            text-decoration: none; border: 1px solid var(--olive-dark); cursor: pointer; border-radius: 30px;
+            text-decoration: none; border: 1px solid var(--olive-accent); cursor: pointer; border-radius: 30px;
             transition: all 0.4s ease; margin-top: 30px; position: relative; z-index: 5;
-            box-shadow: 0 10px 20px rgba(74, 83, 62, 0.15);
+            box-shadow: 0 10px 20px rgba(125, 132, 108, 0.2);
         }
-        .btn-solid:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(74, 83, 62, 0.2); border-color: var(--gold-editorial); }
-        
-        .bg-olive .btn-solid { background-color: transparent; border: 1px solid var(--gold-editorial); color: var(--gold-light); box-shadow: none; }
-        .bg-olive .btn-solid:hover { background-color: var(--gold-editorial); color: var(--olive-dark); box-shadow: 0 15px 25px rgba(203, 163, 88, 0.2); }
+        .btn-solid:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(125, 132, 108, 0.3); background-color: var(--text-dark); border-color: var(--text-dark); }
 
-        /* Itinerario Premium */
+        /* Itinerario */
         .timeline { position: relative; max-width: 380px; margin: 40px auto; padding: 15px 0; }
         .timeline::before {
-            content: ''; position: absolute; width: 1px; background: linear-gradient(to bottom, transparent, var(--gold-editorial), transparent);
+            content: ''; position: absolute; width: 1px; background: linear-gradient(to bottom, transparent, var(--champagne-dark), transparent);
             top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
         }
         .timeline-item {
@@ -324,22 +322,22 @@
         }
         .timeline-item:nth-child(even) { justify-content: flex-start; padding-right: 0; padding-left: 50%; }
         .timeline-dot {
-            position: absolute; width: 10px; height: 10px; background: var(--gold-editorial);
-            border-radius: 50%; top: 6px; right: -5px; z-index: 1; box-shadow: 0 0 12px rgba(203, 163, 88, 0.6);
+            position: absolute; width: 10px; height: 10px; background: var(--rosegold-main);
+            border-radius: 50%; top: 6px; right: -5px; z-index: 1; box-shadow: 0 0 12px rgba(196, 139, 129, 0.4);
         }
         .timeline-item:nth-child(even) .timeline-dot { left: -5px; }
         .timeline-content { padding: 0 25px; text-align: right; }
         .timeline-item:nth-child(even) .timeline-content { text-align: left; }
-        .time { font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 14px; font-weight: 500; margin-bottom: 5px; letter-spacing: 2px;}
-        .event { font-family: 'Cormorant Garamond', serif; color: #fff; font-size: 24px; font-weight: 400; font-style: italic; }
+        .time { font-family: 'Cinzel', serif; color: var(--rosegold-dark); font-size: 14px; font-weight: 500; margin-bottom: 5px; letter-spacing: 2px;}
+        .event { font-family: 'Cormorant Garamond', serif; color: var(--text-dark); font-size: 24px; font-weight: 500; font-style: italic; }
 
         /* Mapas & Formularios */
         .map-box {
             width: 100%; max-width: 500px; height: 320px; margin: 30px auto;
-            overflow: hidden; border-radius: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); position: relative; z-index: 2;
-            border: 1px solid rgba(203, 163, 88, 0.3);
+            overflow: hidden; border-radius: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); position: relative; z-index: 2;
+            border: 1px solid rgba(216, 195, 165, 0.5);
         }
-        .map-box iframe { width: 100%; height: 100%; border: none; filter: grayscale(20%) contrast(1.1); }
+        .map-box iframe { width: 100%; height: 100%; border: none; filter: grayscale(10%) contrast(1.05); }
 
         .form-group { width: 100%; max-width: 400px; margin: 0 auto 20px auto; position: relative; z-index: 2; }
         .input-line {
@@ -348,7 +346,7 @@
             font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 300; outline: none;
             text-align: center; transition: border-color 0.4s;
         }
-        .input-line:focus { border-bottom-color: var(--gold-editorial); }
+        .input-line:focus { border-bottom-color: var(--rosegold-main); }
         .input-line::placeholder { color: #A0A0A0; }
         textarea.input-line { resize: vertical; min-height: 100px; }
         select.input-line { appearance: none; text-align-last: center; cursor: pointer; }
@@ -357,12 +355,12 @@
         .ticket-card {
             width: 100%; max-width: 360px; margin: 35px auto; background: #fff;
             padding: 60px 30px; position: relative; text-align: center;
-            border-radius: 8px; box-shadow: 0 20px 50px rgba(74, 83, 62, 0.08);
-            border: 1px solid rgba(203, 163, 88, 0.2); z-index: 2;
+            border-radius: 8px; box-shadow: 0 20px 50px rgba(196, 139, 129, 0.08);
+            border: 1px solid rgba(216, 195, 165, 0.3); z-index: 2;
         }
         .ticket-card::before, .ticket-card::after {
             content: ''; position: absolute; top: 60%; transform: translateY(-50%);
-            width: 30px; height: 30px; background-color: var(--blush); border-radius: 50%;
+            width: 30px; height: 30px; background-color: var(--bg-champagne); border-radius: 50%;
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.04);
         }
         .ticket-card::before { left: -15px; }
@@ -398,7 +396,7 @@
         <div class="envelope-wrapper" onclick="openEnvelope()">
             <div class="front-flap"></div>
             <div class="wax-seal">
-                <svg viewBox="0 0 24 24"><path d="M12 2L15 9H22L16.5 13.5L18.5 21L12 17L5.5 21L7.5 13.5L2 9H9L12 2Z"/></svg>
+                <img src="assets/sello.png" alt="Sello Personalizado">
             </div>
             <div class="envelope"></div>
         </div>
@@ -424,8 +422,8 @@
             </div>
         </section>
 
-        <!-- Padres (Sección ajustada) -->
-        <section class="bg-blush" style="width: 100%; padding: 50px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 2;">
+        <!-- Padres -->
+        <section class="bg-rosegold" style="width: 100%; padding: 60px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 2;">
             <div class="anim-element anim-fade-up delay-1 info-title">Con el amor de mi madre</div>
             <div class="anim-element anim-fade-up delay-2 info-data" style="font-size: clamp(26px, 5.5vw, 34px); margin-bottom: 0;">Gretel Martha Paloma Fuentes Cerda</div>
         </section>
@@ -433,7 +431,7 @@
         <!-- Fecha & Calendario -->
         <section class="section-block bg-pearl">
             <div class="anim-element anim-fade-up delay-1 info-title">Celebremos juntos el día</div>
-            <div class="anim-element anim-zoom delay-2 info-data" style="font-size: clamp(50px, 12vw, 65px); font-family: 'Cinzel', serif; font-weight: 400; color: var(--gold-editorial); margin-top: 15px;">23</div>
+            <div class="anim-element anim-zoom delay-2 info-data" style="font-size: clamp(50px, 12vw, 65px); font-family: 'Cinzel', serif; font-weight: 400; color: var(--rosegold-main); margin-top: 15px;">23</div>
             <div class="anim-element anim-fade-up delay-3 info-data" style="font-size: clamp(26px, 6vw, 32px); text-transform: uppercase; letter-spacing: 5px;">Agosto</div>
             <div class="anim-element anim-fade-up delay-4 info-data" style="font-size: 24px; color: var(--text-muted); letter-spacing: 2px;">2026</div>
 
@@ -454,10 +452,10 @@
         </section>
 
         <!-- Ubicación -->
-        <section class="section-block bg-olive">
-            <div class="anim-element anim-slide-left delay-1 info-title" style="color: var(--gold-light);">Recepción</div>
+        <section class="section-block bg-champagne">
+            <div class="anim-element anim-slide-left delay-1 info-title">Recepción</div>
             <div class="anim-element anim-slide-right delay-2 info-data">Grand Emerald</div>
-            <div class="anim-element anim-fade-up delay-3 tag-line" style="font-size: 13px; margin: 10px 0; color: var(--gold-editorial);">7:00 p.m.</div>
+            <div class="anim-element anim-fade-up delay-3 tag-line" style="font-size: 13px; margin: 10px 0; color: var(--rosegold-dark);">7:00 p.m.</div>
             
             <div class="anim-element anim-zoom delay-4 map-box">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.7535505887317!2d-100.2608236!3d25.745662400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866294cb2f425b33%3A0x20416209275c60c8!2sGrand%20Emerald%20Eventos!5e0!3m2!1ses-419!2smx!4v1786417299226!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -466,9 +464,9 @@
         </section>
 
         <!-- Itinerario -->
-        <section class="section-block bg-olive" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05);">
-            <div class="anim-element anim-fade-up delay-1 info-title" style="color: var(--gold-light);">Itinerario</div>
-            <div class="anim-element anim-zoom line-horizontal" style="margin: 20px auto 40px auto; background: linear-gradient(to right, transparent, var(--gold-editorial), transparent);"></div>
+        <section class="section-block bg-pearl">
+            <div class="anim-element anim-fade-up delay-1 info-title">Itinerario</div>
+            <div class="anim-element anim-zoom line-horizontal" style="margin: 20px auto 40px auto;"></div>
             
             <div class="timeline">
                 <div class="timeline-item anim-element anim-slide-left delay-1">
@@ -517,19 +515,20 @@
         </section>
 
         <!-- Dress Code -->
-        <section class="section-block bg-pearl">
+        <section class="section-block bg-rosegold">
             <div class="anim-element anim-fade-up delay-1 info-title">Dress Code</div>
-            <div class="anim-element anim-zoom delay-2 info-data" style="font-family: 'Cinzel', serif; font-size: clamp(34px, 7vw, 45px); margin: 20px 0; letter-spacing: 6px; color: var(--olive-dark);">
+            <div class="anim-element anim-zoom delay-2 info-data" style="font-family: 'Cinzel', serif; font-size: clamp(34px, 7vw, 45px); margin: 20px 0; letter-spacing: 6px; color: var(--text-dark);">
                 FORMAL
             </div>
-            <div class="anim-element anim-fade-up delay-3 line-divider"></div>
+            <div class="anim-element anim-fade-up delay-3 line-divider" style="background: linear-gradient(to bottom, transparent, var(--rosegold-dark), transparent);"></div>
             <p class="anim-element anim-fade-up delay-4 body-serif">
-                Para mantener la elegancia de la noche, se solicita amablemente asistir con vestimenta formal.
+                Para mantener la elegancia de la noche, se solicita amablemente asistir con vestimenta formal (traje para caballeros y vestido largo para damas).<br><br>
+                <span style="font-weight: 500; color: var(--rosegold-dark);">El color rosa está reservado exclusivamente para la festejada.</span>
             </p>
         </section>
 
         <!-- Galería en Vivo -->
-        <section class="section-block bg-blush">
+        <section class="section-block bg-pearl">
             <div class="anim-element anim-fade-up delay-1 info-title">Momentos</div>
             <div class="anim-element anim-fade-up delay-2 info-data">Galería en Vivo</div>
             <p class="anim-element anim-fade-up delay-3 body-serif" style="margin: 20px auto;">
@@ -539,15 +538,15 @@
         </section>
 
         <!-- Playlist -->
-        <section class="section-block bg-olive">
-            <div class="anim-element anim-fade-up delay-1 info-title" style="color: var(--gold-light);">Música</div>
+        <section class="section-block bg-champagne">
+            <div class="anim-element anim-fade-up delay-1 info-title">Música</div>
             <div class="anim-element anim-fade-up delay-2 info-data">Nuestra Playlist</div>
             <p class="anim-element anim-fade-up delay-3 body-serif" style="margin: 15px auto 35px auto;">
                 Ayúdame a crear el ambiente perfecto agregando tus canciones favoritas para la pista de baile.
             </p>
             
             <div class="anim-element anim-zoom delay-4" style="width: 100%; max-width: 450px; position: relative; z-index: 2;">
-                <iframe data-testid="embed-iframe" style="border-radius:8px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border: 1px solid rgba(203, 163, 88, 0.2);" src="https://open.spotify.com/embed/playlist/4yisTGgJBiK4T3gnEDYd32?utm_source=generator&si=93e72acdae424957" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe data-testid="embed-iframe" style="border-radius:8px; box-shadow: 0 15px 35px rgba(0,0,0,0.06); border: 1px solid rgba(216, 195, 165, 0.5);" src="https://open.spotify.com/embed/playlist/4yisTGgJBiK4T3gnEDYd32?utm_source=generator&si=93e72acdae424957" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
             
             <a href="https://open.spotify.com/playlist/4yisTGgJBiK4T3gnEDYd32?si=f23301db45fb461a&pt=a7294ac15b37472cb1c85c21d70d579d" target="_blank" class="anim-element anim-fade-up delay-5 btn-solid">Agregar Canciones</a>
@@ -556,7 +555,7 @@
         <!-- Mesa de Regalos -->
         <section class="section-block bg-pearl">
             <div class="anim-element anim-fade-up delay-1 info-title">Mesa de Regalos</div>
-            <svg class="anim-element anim-zoom delay-2" viewBox="0 0 24 24" style="width: 45px; height: 45px; fill: var(--gold-editorial); margin: 20px 0; position: relative; z-index: 2; filter: drop-shadow(0 3px 6px rgba(203, 163, 88, 0.2));">
+            <svg class="anim-element anim-zoom delay-2" viewBox="0 0 24 24" style="width: 45px; height: 45px; fill: var(--rosegold-main); margin: 20px 0; position: relative; z-index: 2; filter: drop-shadow(0 3px 6px rgba(196, 139, 129, 0.2));">
                 <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
             <div class="anim-element anim-fade-up delay-3 info-data">Lluvia de Sobres</div>
@@ -566,8 +565,16 @@
         </section>
 
         <!-- RSVP, Pases y Mensajes -->
-        <section class="section-block bg-blush">
+        <section class="section-block bg-champagne">
             
+            <!-- Aviso Recepción Sin Niños -->
+            <div class="anim-element anim-fade-up delay-1" style="position: relative; z-index: 2; margin-bottom: 50px; background-color: rgba(255,255,255,0.6); padding: 30px 25px; border-radius: 4px; border: 1px solid rgba(196, 139, 129, 0.3); max-width: 420px; margin-left: auto; margin-right: auto;">
+                <span style="display: block; font-family: 'Cinzel', serif; font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: var(--text-dark); margin-bottom: 15px;">Recepción Sin Niños</span>
+                <span style="display: block; font-family: 'Montserrat', sans-serif; font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+                    Amamos a los más pequeños, pero deseamos que disfruten y celebren con nosotros sin preocupaciones. Por ello, el evento será <strong>exclusivamente para adultos</strong>. Agradecemos infinitamente su comprensión.
+                </span>
+            </div>
+
             <!-- Tarjeta VIP Dinámica -->
             <div id="pases-section" style="display: none; width: 100%;">
                 <div class="anim-element anim-fade-up delay-1 info-title">Acceso al Evento</div>
@@ -575,7 +582,7 @@
                     <div class="tag-line" style="margin-bottom: 25px;">Boleto Especial</div>
                     
                     <div class="body-serif" style="font-size: 20px; margin-bottom: 10px; color: var(--text-dark);">Pases Asignados</div>
-                    <div id="ticket-count" style="font-family: 'Cinzel', serif; font-size: 70px; font-weight: 500; color: var(--gold-editorial); line-height: 1;">
+                    <div id="ticket-count" style="font-family: 'Cinzel', serif; font-size: 70px; font-weight: 500; color: var(--rosegold-main); line-height: 1;">
                         0
                     </div>
                     <div style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-top: 35px;">
@@ -649,14 +656,14 @@
             isMusicPlaying = !isMusicPlaying;
         }
 
-        // Efecto de Partículas Doradas
+        // Efecto de Partículas 
         function createSparkles() {
-            const sections = document.querySelectorAll('.bg-olive, .bg-pearl');
+            const sections = document.querySelectorAll('.bg-pearl, .bg-champagne, .bg-rosegold');
             sections.forEach(section => {
-                for (let i = 0; i < 7; i++) {
+                for (let i = 0; i < 6; i++) {
                     const sparkle = document.createElement('div');
                     sparkle.classList.add('sparkle');
-                    sparkle.style.width = Math.random() * 15 + 10 + 'px';
+                    sparkle.style.width = Math.random() * 12 + 8 + 'px';
                     sparkle.style.height = sparkle.style.width;
                     sparkle.style.left = Math.random() * 100 + '%';
                     sparkle.style.top = Math.random() * 100 + '%';
