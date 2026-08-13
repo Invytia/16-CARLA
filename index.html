@@ -7,19 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Pinyon+Script&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Premium: Más Rosa, Champagne y toques Oliva */
-            --solid-pearl: #FEF9FA; /* Base con un ligero matiz rosado */
+            /* Paleta Premium: Rose Gold, Champagne y toques Oliva */
+            --solid-pearl: #FEF9FA; 
             --bg-pearl: rgba(254, 249, 250, 0.85); 
             --bg-champagne: rgba(250, 242, 238, 0.85); 
             --bg-rosegold: rgba(253, 235, 239, 0.9);
             
             --champagne-dark: #D4C1A5; 
             
-            /* Rose Gold mucho más rosa y vibrante */
             --rosegold-main: #E07A88;
             --rosegold-dark: #C45B6A;
             
-            --olive-accent: #7D846C; /* Acento tenue */
+            --olive-accent: #7D846C; 
             
             --text-dark: #3D3833;      
             --text-muted: #736B63;
@@ -50,7 +49,7 @@
             background-image: url('assets/fondo.jpg');
             background-size: cover;
             background-position: center;
-            opacity: 0.45; /* Transparencia ideal para textura */
+            opacity: 0.45; 
             z-index: -1;
             pointer-events: none;
         }
@@ -113,7 +112,7 @@
 
         .envelope {
             position: relative; width: clamp(300px, 85vw, 380px); height: clamp(200px, 58vw, 250px);
-            background-color: #FDF3F4; /* Sobre más rosa */
+            background-color: #FDF3F4; 
             border-radius: 4px; box-shadow: 0 25px 60px rgba(0,0,0,0.15); 
         }
 
@@ -148,7 +147,6 @@
             background: transparent; border: none; box-shadow: none;
         }
         
-        /* Mix-blend-mode elimina el fondo blanco del sello */
         .wax-seal img { 
             width: 100%; height: 100%; object-fit: contain; 
             mix-blend-mode: multiply; 
@@ -191,7 +189,6 @@
         .delay-4 { transition-delay: 0.4s; }
         .delay-5 { transition-delay: 0.5s; }
 
-        /* Espaciado ajustado para eliminar huecos */
         .section-block {
             width: 100%; padding: clamp(70px, 10vw, 100px) 20px; display: flex; flex-direction: column; align-items: center; text-align: center;
             position: relative; overflow: hidden; 
@@ -222,7 +219,7 @@
         .line-divider { width: 1px; height: 70px; background: linear-gradient(to bottom, transparent, var(--rosegold-main), transparent); margin: 35px auto; }
         .line-horizontal { width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--rosegold-main), transparent); margin: 40px auto; }
 
-        /* --- HERO PORTADA PREMIUM TIPOGRÁFICA (SIN CAJA) --- */
+        /* --- HERO PORTADA PREMIUM TIPOGRÁFICA --- */
         #portada {
             min-height: 100vh;
             display: flex;
@@ -250,7 +247,7 @@
             text-transform: uppercase;
             color: var(--text-dark);
             margin-bottom: 15px;
-            margin-left: 12px; /* Centro óptico por el letter-spacing */
+            margin-left: 12px; 
             font-weight: 400;
         }
 
@@ -259,7 +256,7 @@
             line-height: 1.1; 
             margin: 0;
             color: var(--rosegold-main);
-            text-shadow: 0 4px 20px rgba(255,255,255,0.8); /* Brillo sutil */
+            text-shadow: 0 4px 20px rgba(255,255,255,0.8); 
         }
 
         .hero-divider {
@@ -309,7 +306,7 @@
             font-weight: 500; box-shadow: 0 5px 15px rgba(224, 122, 136, 0.4); transform: scale(1.05);
         }
 
-        /* Botones (Ahora son Rosa) */
+        /* Botones Rosa */
         .btn-solid {
             display: inline-block; background-color: var(--rosegold-main); color: #fff;
             padding: 18px 45px; font-family: 'Montserrat', sans-serif; font-size: 12px;
@@ -320,7 +317,7 @@
         }
         .btn-solid:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(224, 122, 136, 0.45); background-color: var(--rosegold-dark); border-color: var(--rosegold-dark); }
 
-        /* --- ITINERARIO CON ÍCONOS FINOS (Line Art) --- */
+        /* --- ITINERARIO CON ÍCONOS FINOS --- */
         .itinerary-grid {
             width: 100%; max-width: 420px; margin: 40px auto; display: flex; flex-direction: column; gap: 40px;
             position: relative;
@@ -371,13 +368,23 @@
         .input-line {
             width: 100%; padding: 22px 0; background: transparent; border: none;
             border-bottom: 1px solid rgba(0,0,0,0.15); color: var(--text-dark);
-            font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 300; outline: none;
+            font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 500; outline: none;
             text-align: center; transition: border-color 0.4s;
         }
+        
+        .input-line:disabled {
+            color: var(--rosegold-main);
+            -webkit-text-fill-color: var(--rosegold-main);
+            font-weight: 600;
+            opacity: 1;
+            cursor: not-allowed;
+            border-bottom-color: rgba(224, 122, 136, 0.5);
+        }
+
         .input-line:focus { border-bottom-color: var(--rosegold-main); }
-        .input-line::placeholder { color: #A0A0A0; }
-        textarea.input-line { resize: vertical; min-height: 120px; }
-        select.input-line { appearance: none; text-align-last: center; cursor: pointer; }
+        .input-line::placeholder { color: #A0A0A0; font-weight: 300; }
+        textarea.input-line { resize: vertical; min-height: 120px; font-weight: 300;}
+        select.input-line { appearance: none; text-align-last: center; cursor: pointer; font-weight: 300; }
         
         /* Pase VIP */
         .ticket-card {
@@ -429,7 +436,7 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main id="main-invitation">
         
-        <!-- Portada Elegante Tipográfica (Centrada y sin caja) -->
+        <!-- Portada Elegante Tipográfica -->
         <section id="portada">
             <div class="hero-content anim-element anim-zoom delay-1">
                 <div class="hero-subtitle">Mis Dulces 16</div>
@@ -446,7 +453,7 @@
             </p>
         </section>
 
-        <!-- Padres (Espaciado Ajustado) -->
+        <!-- Padres -->
         <section class="section-block bg-rosegold" style="padding-top: 60px; padding-bottom: 60px;">
             <div class="anim-element anim-fade-up delay-1 info-title" style="margin-bottom: 15px;">Con el amor de mi madre</div>
             <div class="anim-element anim-fade-up delay-2 info-data" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 0; line-height: 1.1;">Gretel Martha Paloma Fuentes Cerda</div>
@@ -630,7 +637,11 @@
                 <div class="anim-element anim-zoom delay-2 ticket-card">
                     <div class="tag-line" style="margin-bottom: 30px;">Boleto Especial</div>
                     
-                    <div class="body-serif" style="font-size: 24px; margin-bottom: 15px; color: var(--text-dark); font-style: normal;">Pases Asignados</div>
+                    <div id="ticket-name" style="font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--text-dark); margin-bottom: 15px; font-weight: 500; font-style: italic;">
+                        Invitado Especial
+                    </div>
+                    
+                    <div class="body-serif" style="font-size: 20px; margin-bottom: 10px; color: var(--text-muted); font-style: normal;">Pases Asignados</div>
                     <div id="ticket-count" style="font-family: 'Cinzel', serif; font-size: 80px; font-weight: 500; color: var(--rosegold-main); line-height: 1;">
                         0
                     </div>
@@ -763,21 +774,130 @@
         });
 
         // --- SISTEMA ESTRICTO DE PASES ---
+        // Base de Datos extraída de la lista proporcionada
+        const dbInvitados = {
+            "1": { nombre: "Carlos fuentes", pases: 2 },
+            "2": { nombre: "Juan fuentes", pases: 2 },
+            "3": { nombre: "Fam. Medina Silva", pases: 3 },
+            "4": { nombre: "Fam. Saucedo Fuentes", pases: 6 },
+            "5": { nombre: "Raúl Paredes Martínez", pases: 1 },
+            "6": { nombre: "Alexi Fuentes Cerda", pases: 2 },
+            "7": { nombre: "Martha Cerda Morin", pases: 2 },
+            "8": { nombre: "Fam. Loredo Barrera", pases: 4 },
+            "9": { nombre: "Detzary Limón Loredo", pases: 2 },
+            "10": { nombre: "Esau Castro Fuentes", pases: 2 },
+            "11": { nombre: "Fam. Luna Cerda", pases: 3 },
+            "12": { nombre: "Pedro Sergio Hernandez", pases: 3 },
+            "13": { nombre: "Fam. Limón Cerda", pases: 2 },
+            "14": { nombre: "Juan Antonio Hernandez", pases: 2 },
+            "15": { nombre: "Fam. Barrera Ramírez", pases: 2 },
+            "16": { nombre: "Fam. Rosso Barrera", pases: 5 },
+            "17": { nombre: "Fam. Reyna Marua", pases: 6 },
+            "18": { nombre: "Fam. Salas Salas", pases: 2 },
+            "19": { nombre: "Fam. Barrera Valdez", pases: 2 },
+            "20": { nombre: "Vero Zamora", pases: 4 },
+            "21": { nombre: "Fam. Mendez Ortiz", pases: 2 },
+            "22": { nombre: "Fam. Chapa Isais", pases: 4 },
+            "23": { nombre: "Ismael y Ana Kren", pases: 2 },
+            "24": { nombre: "Fam. Pérez Gallegos", pases: 2 },
+            "25": { nombre: "Fam. Monroy Urbina", pases: 2 },
+            "26": { nombre: "Nancy Monroy", pases: 2 },
+            "27": { nombre: "Mary Torres", pases: 2 },
+            "28": { nombre: "Fam. Lejía Jimenez", pases: 2 },
+            "29": { nombre: "Fam. Villarreal Noriega", pases: 2 },
+            "30": { nombre: "Fam. Moreno Villarreal", pases: 2 },
+            "31": { nombre: "Fam. Villarreal Salazar", pases: 4 },
+            "32": { nombre: "Fam. Fuentes Velazquez", pases: 5 },
+            "33": { nombre: "Fam. Fuentes Santos", pases: 5 },
+            "34": { nombre: "Gael y Ailyn", pases: 2 },
+            "35": { nombre: "Marilu Yañez", pases: 3 },
+            "36": { nombre: "Elisa Loera", pases: 3 },
+            "37": { nombre: "Cassandra Olvera", pases: 3 },
+            "38": { nombre: "Lili Fuentes", pases: 2 },
+            "39": { nombre: "Juan Fuentes", pases: 5 },
+            "40": { nombre: "Erika Mendoza", pases: 2 },
+            "41": { nombre: "Yeimi Mendoza", pases: 2 },
+            "42": { nombre: "Leonor De Mendoza", pases: 2 },
+            "43": { nombre: "Sandra", pases: 1 },
+            "44": { nombre: "Invitaciones de xv", pases: 1 },
+            "45": { nombre: "Kamila Mendoza", pases: 1 },
+            "46": { nombre: "Zara Ortiz", pases: 1 },
+            "47": { nombre: "Fernanda Ávila", pases: 1 },
+            "48": { nombre: "Samuel", pases: 1 },
+            "49": { nombre: "Amigo de Samuel", pases: 1 },
+            "50": { nombre: "Diana Salazar", pases: 1 },
+            "51": { nombre: "gabi vidal", pases: 1 },
+            "52": { nombre: "Isabella Constantino tapia", pases: 1 },
+            "53": { nombre: "Mairyn ruiz martel", pases: 1 },
+            "54": { nombre: "Dominic Mata Laila nadine", pases: 1 },
+            "55": { nombre: "Camila Saucedo", pases: 1 },
+            "56": { nombre: "Mayte huerta", pases: 1 },
+            "57": { nombre: "Abril Treviño", pases: 1 },
+            "58": { nombre: "Selene", pases: 1 },
+            "59": { nombre: "Elena Escamilla", pases: 1 },
+            "60": { nombre: "Regina", pases: 1 },
+            "61": { nombre: "Gretel Reyes", pases: 1 },
+            "62": { nombre: "miranda avendaño", pases: 1 },
+            "63": { nombre: "Ximena Orta", pases: 1 },
+            "64": { nombre: "Samantha Silva", pases: 1 },
+            "65": { nombre: "Mayte Briones", pases: 1 },
+            "66": { nombre: "Renee Bouquet", pases: 1 },
+            "67": { nombre: "Isabella Granados", pases: 1 },
+            "68": { nombre: "Víctor Villarreal", pases: 1 },
+            "69": { nombre: "Freddy Ramírez", pases: 1 },
+            "70": { nombre: "Natalia Fuentes", pases: 1 },
+            "71": { nombre: "Adamari Lilian", pases: 1 },
+            "72": { nombre: "Arnulfo Reyes", pases: 1 },
+            "73": { nombre: "Arnulfo Reyes", pases: 1 },
+            "74": { nombre: "Jimena Guerrero", pases: 1 },
+            "75": { nombre: "Arely", pases: 1 },
+            "76": { nombre: "Natalia", pases: 1 },
+            "77": { nombre: "Monserrat García", pases: 1 },
+            "78": { nombre: "Sara salaz", pases: 1 },
+            "79": { nombre: "Fany salaz", pases: 1 },
+            "80": { nombre: "Sharon salaz", pases: 1 },
+            "81": { nombre: "Mariel Salazar", pases: 1 },
+            "82": { nombre: "Fer Cabrera", pases: 1 },
+            "83": { nombre: "Ximena", pases: 1 },
+            "84": { nombre: "Fernanda Oliva", pases: 1 },
+            "85": { nombre: "la 13(Raquel Ibarra)", pases: 1 },
+            "86": { nombre: "Susana Elizondo Díaz", pases: 1 },
+            "87": { nombre: "Sarahí Armendáriz", pases: 1 },
+            "88": { nombre: "Ashley González", pases: 1 },
+            "89": { nombre: "Geraldine García", pases: 1 },
+            "90": { nombre: "Brayan Martinez", pases: 1 },
+            "91": { nombre: "Larissa Gomez Rendón", pases: 1 },
+            "92": { nombre: "Kendra", pases: 1 },
+            "93": { nombre: "Alberto gome", pases: 1 }
+        };
+
         let pasesAsignados = 0;
+        let nombreInvitado = "Invitado Especial";
         const urlParams = new URLSearchParams(window.location.search);
+        let parametroId = urlParams.get('id');
         let parametroPases = urlParams.get('p') || urlParams.get('pases');
         const phoneNumber = "528120526848"; 
 
-        if (parametroPases && !isNaN(parametroPases)) {
+        if (parametroId && dbInvitados[parametroId]) {
+            pasesAsignados = dbInvitados[parametroId].pases;
+            nombreInvitado = dbInvitados[parametroId].nombre;
+            
+            const inputName = document.getElementById("rsvp-name");
+            if(inputName) {
+                inputName.value = nombreInvitado;
+                inputName.disabled = true; // Auto-bloquea la edición para mayor control
+            }
+        } else if (parametroPases && !isNaN(parametroPases)) {
             pasesAsignados = parseInt(parametroPases);
         }
 
-        // Solo mostrar boleto VIP si hay pases asignados
+        // Mostrar boleto VIP si hay pases asignados
         if (pasesAsignados > 0) {
             const pasesSection = document.getElementById('pases-section');
             if (pasesSection) {
                 pasesSection.style.display = 'block';
                 document.getElementById('ticket-count').innerText = pasesAsignados;
+                document.getElementById('ticket-name').innerText = nombreInvitado;
             }
         }
 
@@ -785,12 +905,12 @@
         const rsvpGuests = document.getElementById("rsvp-guests");
 
         rsvpStatus.addEventListener('change', (e) => {
-            // Solo desplegar el selector de personas si el invitado tiene pases asignados en la URL
+            // Solo desplegar el selector de personas si el invitado tiene pases asignados
             if(e.target.value === 'yes' && pasesAsignados > 0) {
                 rsvpGuests.style.display = 'block';
                 rsvpGuests.innerHTML = '<option value="" disabled selected>¿Cuántas personas asisten?</option>';
                 
-                // Limitar estrictamente las opciones al número de pases
+                // Limitar estrictamente las opciones
                 for(let i = 1; i <= pasesAsignados; i++) {
                     rsvpGuests.innerHTML += `<option value="${i}">${i} persona${i > 1 ? 's' : ''}</option>`;
                 }
@@ -811,7 +931,6 @@
                 return;
             }
             
-            // Requerir cantidad de invitados solo si se proporcionó un pase
             if (status === "yes" && pasesAsignados > 0 && guests === "") {
                 alert("Por favor, indica cuántas personas asistirán.");
                 return;
