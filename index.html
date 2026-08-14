@@ -148,6 +148,7 @@
             background: transparent; border: none; box-shadow: none;
         }
         
+        /* Mix-blend-mode elimina el fondo blanco del sello */
         .wax-seal img { 
             width: 100%; height: 100%; object-fit: contain; 
             mix-blend-mode: multiply; 
@@ -283,7 +284,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Texto hacia abajo */
+            justify-content: flex-end; 
             align-items: center;
             padding: 20px;
             background: transparent; 
@@ -506,14 +507,14 @@
             </div>
         </section>
 
-        <!-- Mensaje (con 1.jpg) -->
+        <!-- Mensaje (Acompañado por 6.jpg, ajustado por tu instrucción) -->
         <section class="section-block bg-pearl" style="padding-top: 50px;">
             <p class="anim-element anim-fade-up delay-1 body-serif">
                 "Que este día brille tanto como la alegría que hay en mi corazón. Celebrar mis dieciséis años es un sueño hecho realidad, y el regalo más hermoso es poder compartirlo con las personas que más amo."
             </p>
             <div class="photo-frame anim-element anim-fade-up delay-3" onclick="openLightbox(this.querySelector('img').src)">
                 <div class="img-wrapper">
-                    <img src="assets/1.jpg" alt="Momentos" onerror="this.parentElement.parentElement.style.display='none'">
+                    <img src="assets/6.jpg" alt="Momentos" onerror="this.parentElement.parentElement.style.display='none'">
                 </div>
             </div>
         </section>
@@ -652,7 +653,7 @@
             </div>
         </section>
 
-        <!-- Dress Code (con 6.jpg) -->
+        <!-- Dress Code (Acompañado por 1.jpg, ajustado por tu instrucción) -->
         <section class="section-block bg-rosegold">
             <div class="anim-element anim-fade-up delay-1 info-title">Dress Code</div>
             <div class="anim-element anim-zoom delay-2 info-data" style="font-family: 'Cinzel', serif; font-size: clamp(40px, 8vw, 55px); margin: 20px 0; letter-spacing: 6px; color: var(--text-dark);">
@@ -666,7 +667,7 @@
 
             <div class="photo-frame anim-element anim-fade-up delay-4" onclick="openLightbox(this.querySelector('img').src)">
                 <div class="img-wrapper">
-                    <img src="assets/6.jpg" alt="Dress Code" onerror="this.parentElement.parentElement.style.display='none'">
+                    <img src="assets/1.jpg" alt="Dress Code" onerror="this.parentElement.parentElement.style.display='none'">
                 </div>
             </div>
         </section>
@@ -828,15 +829,14 @@
         function openLightbox(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restaura scroll
+            document.body.style.overflow = 'auto'; 
         }
 
-        // Cierra lightbox con tecla ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === "Escape") closeLightbox();
         });
@@ -898,7 +898,7 @@
             document.querySelectorAll('.anim-element').forEach(el => observer.observe(el));
         });
 
-        // --- SISTEMA ESTRICTO DE PASES ---
+        // --- SISTEMA ESTRICTO DE PASES (ACTUALIZADO) ---
         const dbInvitados = {
             "1": { nombre: "Carlos fuentes", pases: 2 },
             "2": { nombre: "Juan fuentes", pases: 2 },
@@ -914,7 +914,7 @@
             "12": { nombre: "Pedro Sergio Hernandez", pases: 3 },
             "13": { nombre: "Fam. Limón Cerda", pases: 2 },
             "14": { nombre: "Juan Antonio Hernandez", pases: 2 },
-            "15": { nombre: "Fam. Barrera Ramírez", pases: 2 },
+            "15": { nombre: "Fam. Barrera Ramírez", pases: 5 },
             "16": { nombre: "Fam. Rosso Barrera", pases: 5 },
             "17": { nombre: "Fam. Reyna Marua", pases: 6 },
             "18": { nombre: "Fam. Salas Salas", pases: 2 },
@@ -992,7 +992,9 @@
             "90": { nombre: "Brayan Martinez", pases: 1 },
             "91": { nombre: "Larissa Gomez Rendón", pases: 1 },
             "92": { nombre: "Kendra", pases: 1 },
-            "93": { nombre: "Alberto gome", pases: 1 }
+            "93": { nombre: "Alberto gome", pases: 1 },
+            "94": { nombre: "Oscar bautista", pases: 1 },
+            "95": { nombre: "Ausencio Yáñez", pases: 1 }
         };
 
         let pasesAsignados = 0;
