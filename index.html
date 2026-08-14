@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Pinyon+Script&family=Montserrat:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Premium: Rose Gold, Champagne y toques Oliva */
+            /* Paleta Premium: Más Rosa, Champagne y toques Oliva */
             --solid-pearl: #FEF9FA; 
             --bg-pearl: rgba(254, 249, 250, 0.85); 
             --bg-champagne: rgba(250, 242, 238, 0.85); 
@@ -15,6 +15,7 @@
             
             --champagne-dark: #D4C1A5; 
             
+            /* Rose Gold muy rosa y vibrante */
             --rosegold-main: #E07A88;
             --rosegold-dark: #C45B6A;
             
@@ -82,7 +83,7 @@
             background-color: var(--solid-pearl);
             background-image: linear-gradient(rgba(250, 242, 238, 0.4), rgba(250, 242, 238, 0.4)), url('assets/fondo.jpg');
             background-size: cover; background-position: center; background-repeat: no-repeat;
-            z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 3000; display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 1.5s ease-in-out, visibility 1.5s;
         }
 
@@ -164,6 +165,63 @@
         @keyframes pulse-hint { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
         @keyframes floatText { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
 
+        /* --- LIGHTBOX (VISOR DE FOTOS) --- */
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(254, 249, 250, 0.96); 
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 4000; display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: all 0.4s ease;
+            cursor: zoom-out;
+        }
+        .lightbox.active { opacity: 1; visibility: visible; }
+        .lightbox-content { position: relative; max-width: 90%; max-height: 90vh; }
+        .lightbox img {
+            width: auto; max-height: 85vh; max-width: 100%; border-radius: 4px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+            border: 8px solid #fff; padding: 0; background: #fff;
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute; top: -20px; right: -20px; width: 40px; height: 40px;
+            background: var(--rosegold-main); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; color: #fff;
+            font-size: 24px; cursor: pointer; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- MARCOS FOTOGRÁFICOS --- */
+        .photo-frame {
+            width: 100%; max-width: 380px; margin: 35px auto 45px auto;
+            box-shadow: 0 20px 45px rgba(224, 122, 136, 0.15); 
+            border-radius: 6px; 
+            border: 1px solid var(--rosegold-main); 
+            padding: 8px; 
+            background: #fff;
+            position: relative; z-index: 2;
+            cursor: zoom-in;
+        }
+        .photo-frame img { 
+            width: 100%; height: auto; display: block; border-radius: 3px; transition: transform 1s ease;
+        }
+        .photo-frame:hover img { transform: scale(1.02); }
+        .photo-frame div.img-wrapper { overflow: hidden; border-radius: 3px; }
+
+        /* Cuadrícula para Galería en Vivo */
+        .photo-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+            width: 100%; max-width: 500px; margin: 40px auto; position: relative; z-index: 2;
+        }
+        .photo-grid-item {
+            box-shadow: 0 15px 30px rgba(224, 122, 136, 0.15); border-radius: 6px; 
+            border: 1px solid var(--rosegold-main); padding: 6px; background: #fff; cursor: zoom-in;
+        }
+        .photo-grid-item:first-child { grid-column: span 2; }
+        .photo-grid-item .img-wrapper { width: 100%; height: 100%; overflow: hidden; border-radius: 3px; }
+        .photo-grid-item img {
+            width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1s ease;
+        }
+        .photo-grid-item:hover img { transform: scale(1.03); }
+
         /* --- CONTENIDO PRINCIPAL --- */
         #main-invitation {
             display: none; width: 100%; flex-direction: column; align-items: center;
@@ -219,56 +277,56 @@
         .line-divider { width: 1px; height: 70px; background: linear-gradient(to bottom, transparent, var(--rosegold-main), transparent); margin: 35px auto; }
         .line-horizontal { width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--rosegold-main), transparent); margin: 40px auto; }
 
-        /* --- HERO PORTADA PREMIUM TIPOGRÁFICA --- */
+        /* --- HERO PORTADA IMPRESIONANTE --- */
         #portada {
+            position: relative;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end; /* Texto hacia abajo */
             align-items: center;
             padding: 20px;
             background: transparent; 
             text-align: center;
         }
 
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+        }
+        .hero-bg img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(254, 249, 250, 0.1) 0%, rgba(254, 249, 250, 0.85) 65%, var(--solid-pearl) 100%);
+            z-index: 2;
+        }
+
         .hero-content {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative; z-index: 2;
+            display: flex; flex-direction: column; align-items: center;
+            position: relative; z-index: 3;
+            padding-bottom: 12vh;
         }
 
         .hero-subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            letter-spacing: 12px;
-            text-transform: uppercase;
-            color: var(--text-dark);
-            margin-bottom: 15px;
-            margin-left: 12px; 
+            font-family: 'Montserrat', sans-serif; font-size: 14px; letter-spacing: 12px;
+            text-transform: uppercase; color: var(--text-dark); margin-bottom: 15px; margin-left: 12px; 
             font-weight: 400;
         }
 
         .hero-content .title-script { 
-            font-size: clamp(85px, 20vw, 140px); 
-            line-height: 1.1; 
-            margin: 0;
-            color: var(--rosegold-main);
-            text-shadow: 0 4px 20px rgba(255,255,255,0.8); 
+            font-size: clamp(85px, 20vw, 140px); line-height: 1.1; margin: 0;
+            color: var(--rosegold-main); text-shadow: 0 4px 15px rgba(254, 249, 250, 0.9); 
         }
 
         .hero-divider {
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent, var(--rosegold-main), transparent);
-            margin: 30px auto;
+            width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--rosegold-main), transparent); margin: 25px auto;
         }
 
         .hero-date {
             font-family: 'Cinzel', serif; font-size: 16px; letter-spacing: 6px;
-            text-transform: uppercase; color: var(--text-muted); font-weight: 500;
+            text-transform: uppercase; color: var(--rosegold-dark); font-weight: 600;
         }
 
         .info-title {
@@ -322,28 +380,23 @@
             width: 100%; max-width: 420px; margin: 40px auto; display: flex; flex-direction: column; gap: 40px;
             position: relative;
         }
-        
         .itinerary-grid::before {
             content: ''; position: absolute; top: 10px; bottom: 10px; left: 40px;
             width: 1px; background: linear-gradient(to bottom, transparent, var(--rosegold-main), transparent);
             opacity: 0.5;
         }
-        
         .itinerary-item {
             display: flex; align-items: center; gap: 30px; width: 100%; text-align: left; position: relative; z-index: 2;
         }
-        
         .itinerary-icon-box {
             min-width: 80px; height: 80px; border-radius: 50%; background: #fff;
             display: flex; justify-content: center; align-items: center;
             box-shadow: 0 10px 25px rgba(224, 122, 136, 0.15); border: 1px solid rgba(224, 122, 136, 0.4);
             position: relative;
         }
-        
         .itinerary-icon-box svg { 
             width: 32px; height: 32px; fill: none; stroke: var(--rosegold-dark); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; 
         }
-        
         .itinerary-details { display: flex; flex-direction: column; gap: 5px; }
         .itinerary-time { font-family: 'Cinzel', serif; color: var(--rosegold-dark); font-size: 15px; font-weight: 600; letter-spacing: 2px; }
         .itinerary-event { font-family: 'Cormorant Garamond', serif; color: var(--text-dark); font-size: 30px; font-weight: 400; font-style: italic; }
@@ -373,12 +426,8 @@
         }
         
         .input-line:disabled {
-            color: var(--rosegold-main);
-            -webkit-text-fill-color: var(--rosegold-main);
-            font-weight: 600;
-            opacity: 1;
-            cursor: not-allowed;
-            border-bottom-color: rgba(224, 122, 136, 0.5);
+            color: var(--rosegold-main); -webkit-text-fill-color: var(--rosegold-main);
+            font-weight: 600; opacity: 1; cursor: not-allowed; border-bottom-color: rgba(224, 122, 136, 0.5);
         }
 
         .input-line:focus { border-bottom-color: var(--rosegold-main); }
@@ -395,9 +444,8 @@
         }
         .ticket-card::before, .ticket-card::after {
             content: ''; position: absolute; top: 60%; transform: translateY(-50%);
-            width: 35px; height: 35px; background-color: var(--solid-pearl); border-radius: 50%;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.06);
-            border-right: 1px solid rgba(224, 122, 136, 0.4);
+            width: 35px; height: 35px; background-color: var(--bg-rosegold); border-radius: 50%;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.06); border-right: 1px solid rgba(224, 122, 136, 0.4);
         }
         .ticket-card::before { left: -17px; }
         .ticket-card::after { right: -17px; border-right: none; border-left: 1px solid rgba(224, 122, 136, 0.4); }
@@ -405,6 +453,14 @@
     </style>
 </head>
 <body>
+
+    <!-- VISOR DE FOTOS (LIGHTBOX) -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightbox-img" src="" alt="Ampliación">
+        </div>
+    </div>
 
     <!-- AUDIO OCULTO -->
     <audio id="bg-music" src="assets/song.mp3" loop></audio>
@@ -436,9 +492,13 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main id="main-invitation">
         
-        <!-- Portada Elegante Tipográfica -->
+        <!-- Portada Inmersiva y Espectacular con Foto (Hero.jpg) -->
         <section id="portada">
-            <div class="hero-content anim-element anim-zoom delay-1">
+            <div class="hero-bg">
+                <img src="assets/hero.jpg" alt="Carla Ianina" onerror="this.style.display='none'">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content anim-element anim-fade-up delay-1">
                 <div class="hero-subtitle">Mis Dulces 16</div>
                 <h1 class="title-script">Carla Ianina</h1>
                 <div class="hero-divider"></div>
@@ -446,20 +506,31 @@
             </div>
         </section>
 
-        <!-- Mensaje -->
-        <section class="section-block bg-pearl" style="padding-top: 20px;">
+        <!-- Mensaje (con 1.jpg) -->
+        <section class="section-block bg-pearl" style="padding-top: 50px;">
             <p class="anim-element anim-fade-up delay-1 body-serif">
                 "Que este día brille tanto como la alegría que hay en mi corazón. Celebrar mis dieciséis años es un sueño hecho realidad, y el regalo más hermoso es poder compartirlo con las personas que más amo."
             </p>
+            <div class="photo-frame anim-element anim-fade-up delay-3" onclick="openLightbox(this.querySelector('img').src)">
+                <div class="img-wrapper">
+                    <img src="assets/1.jpg" alt="Momentos" onerror="this.parentElement.parentElement.style.display='none'">
+                </div>
+            </div>
         </section>
 
-        <!-- Padres -->
-        <section class="section-block bg-rosegold" style="padding-top: 60px; padding-bottom: 60px;">
+        <!-- Padres (con 2.jpg) -->
+        <section class="section-block bg-rosegold" style="padding-top: 80px; padding-bottom: 80px;">
             <div class="anim-element anim-fade-up delay-1 info-title" style="margin-bottom: 15px;">Con el amor de mi madre</div>
-            <div class="anim-element anim-fade-up delay-2 info-data" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 0; line-height: 1.1;">Gretel Martha Paloma Fuentes Cerda</div>
+            <div class="anim-element anim-fade-up delay-2 info-data" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 30px; line-height: 1.1;">Gretel Martha Paloma Fuentes Cerda</div>
+            
+            <div class="photo-frame anim-element anim-fade-up delay-3" onclick="openLightbox(this.querySelector('img').src)">
+                <div class="img-wrapper">
+                    <img src="assets/2.jpg" alt="Familia" onerror="this.parentElement.parentElement.style.display='none'">
+                </div>
+            </div>
         </section>
 
-        <!-- Fecha & Calendario -->
+        <!-- Fecha & Calendario (con 3.jpg) -->
         <section class="section-block bg-pearl">
             <div class="anim-element anim-fade-up delay-1 info-title">Celebremos juntos el día</div>
             <div class="anim-element anim-zoom delay-2 info-data" style="font-size: clamp(60px, 12vw, 85px); font-family: 'Cinzel', serif; font-weight: 400; color: var(--rosegold-main); margin-top: 15px;">23</div>
@@ -480,9 +551,15 @@
             </div>
 
             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dulces+16+de+Carla+Ianina&dates=20260823T230000Z/20260824T060000Z&details=Celebremos+juntos+este+d%C3%ADa+tan+especial" target="_blank" class="anim-element anim-fade-up delay-5 btn-solid">Agendar en Calendario</a>
+
+            <div class="photo-frame anim-element anim-fade-up delay-4" onclick="openLightbox(this.querySelector('img').src)">
+                <div class="img-wrapper">
+                    <img src="assets/3.jpg" alt="Detalle" onerror="this.parentElement.parentElement.style.display='none'">
+                </div>
+            </div>
         </section>
 
-        <!-- Ubicación -->
+        <!-- Ubicación (con 4.jpg) -->
         <section class="section-block bg-champagne">
             <div class="anim-element anim-slide-left delay-1 info-title">Recepción</div>
             <div class="anim-element anim-slide-right delay-2 info-data">Grand Emerald</div>
@@ -492,15 +569,20 @@
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.7535505887317!2d-100.2608236!3d25.745662400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866294cb2f425b33%3A0x20416209275c60c8!2sGrand%20Emerald%20Eventos!5e0!3m2!1ses-419!2smx!4v1786417299226!5m2!1ses-419!2smx" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
             </div>
             <a href="https://maps.app.goo.gl/YAYn7usdA7gMgKjo7?g_st=ic" target="_blank" class="anim-element anim-fade-up delay-5 btn-solid">Abrir en Maps</a>
+
+            <div class="photo-frame anim-element anim-fade-up delay-4" onclick="openLightbox(this.querySelector('img').src)">
+                <div class="img-wrapper">
+                    <img src="assets/4.jpg" alt="Lugar" onerror="this.parentElement.parentElement.style.display='none'">
+                </div>
+            </div>
         </section>
 
-        <!-- Itinerario (Diseño Minimalista Line Art) -->
+        <!-- Itinerario (con 5.jpg) -->
         <section class="section-block bg-pearl">
             <div class="anim-element anim-fade-up delay-1 info-title">Itinerario</div>
             <div class="anim-element anim-zoom line-horizontal" style="margin: 20px auto 40px auto;"></div>
             
             <div class="itinerary-grid">
-                
                 <!-- Recepción -->
                 <div class="itinerary-item anim-element anim-fade-up delay-1">
                     <div class="itinerary-icon-box">
@@ -511,7 +593,6 @@
                         <span class="itinerary-event">Recepción</span>
                     </div>
                 </div>
-
                 <!-- Vals -->
                 <div class="itinerary-item anim-element anim-fade-up delay-2">
                     <div class="itinerary-icon-box">
@@ -522,7 +603,6 @@
                         <span class="itinerary-event">Vals</span>
                     </div>
                 </div>
-
                 <!-- Cena -->
                 <div class="itinerary-item anim-element anim-fade-up delay-3">
                     <div class="itinerary-icon-box">
@@ -533,7 +613,6 @@
                         <span class="itinerary-event">Cena</span>
                     </div>
                 </div>
-
                 <!-- Balet -->
                 <div class="itinerary-item anim-element anim-fade-up delay-4">
                     <div class="itinerary-icon-box">
@@ -544,7 +623,6 @@
                         <span class="itinerary-event">Balet</span>
                     </div>
                 </div>
-
                 <!-- Snack -->
                 <div class="itinerary-item anim-element anim-fade-up delay-5">
                     <div class="itinerary-icon-box">
@@ -555,8 +633,7 @@
                         <span class="itinerary-event">Snack</span>
                     </div>
                 </div>
-
-                <!-- Fin del Evento -->
+                <!-- Fin -->
                 <div class="itinerary-item anim-element anim-fade-up delay-5">
                     <div class="itinerary-icon-box">
                         <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -567,9 +644,15 @@
                     </div>
                 </div>
             </div>
+
+            <div class="photo-frame anim-element anim-fade-up delay-4" style="margin-top: 60px;" onclick="openLightbox(this.querySelector('img').src)">
+                <div class="img-wrapper">
+                    <img src="assets/5.jpg" alt="Momentos" onerror="this.parentElement.parentElement.style.display='none'">
+                </div>
+            </div>
         </section>
 
-        <!-- Dress Code -->
+        <!-- Dress Code (con 6.jpg) -->
         <section class="section-block bg-rosegold">
             <div class="anim-element anim-fade-up delay-1 info-title">Dress Code</div>
             <div class="anim-element anim-zoom delay-2 info-data" style="font-family: 'Cinzel', serif; font-size: clamp(40px, 8vw, 55px); margin: 20px 0; letter-spacing: 6px; color: var(--text-dark);">
@@ -580,9 +663,15 @@
                 Para mantener la elegancia de la noche, se solicita amablemente asistir con vestimenta formal (traje para caballeros y vestido largo para damas).<br><br>
                 <span style="font-weight: 500; color: var(--rosegold-dark);">El color rosa está reservado exclusivamente para la festejada.</span>
             </p>
+
+            <div class="photo-frame anim-element anim-fade-up delay-4" onclick="openLightbox(this.querySelector('img').src)">
+                <div class="img-wrapper">
+                    <img src="assets/6.jpg" alt="Dress Code" onerror="this.parentElement.parentElement.style.display='none'">
+                </div>
+            </div>
         </section>
 
-        <!-- Galería en Vivo -->
+        <!-- Galería en Vivo (Grid con 7.jpg, 8.jpg, 9.jpg) -->
         <section class="section-block bg-pearl">
             <div class="anim-element anim-fade-up delay-1 info-title">Momentos</div>
             <div class="anim-element anim-fade-up delay-2 info-data">Galería en Vivo</div>
@@ -590,9 +679,22 @@
                 Captura la magia de esta noche. Comparte todas las fotos y videos que tomes directamente en nuestro álbum digital.
             </p>
             <a href="https://drive.google.com/drive/folders/17w-j-CwkYndpIEyuaJg4fH6rKeX_V8DK?usp=sharing" target="_blank" class="anim-element anim-zoom delay-4 btn-solid">Subir mis Fotos</a>
+
+            <!-- Cuadrícula Asimétrica -->
+            <div class="photo-grid anim-element anim-fade-up delay-5">
+                <div class="photo-grid-item" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="img-wrapper"><img src="assets/7.jpg" alt="Sesión" onerror="this.parentElement.parentElement.style.display='none'"></div>
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="img-wrapper"><img src="assets/8.jpg" alt="Sesión" onerror="this.parentElement.parentElement.style.display='none'"></div>
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox(this.querySelector('img').src)">
+                    <div class="img-wrapper"><img src="assets/9.jpg" alt="Sesión" onerror="this.parentElement.parentElement.style.display='none'"></div>
+                </div>
+            </div>
         </section>
 
-        <!-- Playlist -->
+        <!-- Playlist (con 10.jpg) -->
         <section class="section-block bg-champagne">
             <div class="anim-element anim-fade-up delay-1 info-title">Música</div>
             <div class="anim-element anim-fade-up delay-2 info-data">Nuestra Playlist</div>
@@ -605,6 +707,12 @@
             </div>
             
             <a href="https://open.spotify.com/playlist/4yisTGgJBiK4T3gnEDYd32?si=f23301db45fb461a&pt=a7294ac15b37472cb1c85c21d70d579d" target="_blank" class="anim-element anim-fade-up delay-5 btn-solid">Agregar Canciones</a>
+
+            <div class="photo-frame anim-element anim-fade-up delay-5" style="margin-top: 60px;" onclick="openLightbox(this.querySelector('img').src)">
+                <div class="img-wrapper">
+                    <img src="assets/10.jpg" alt="Música" onerror="this.parentElement.parentElement.style.display='none'">
+                </div>
+            </div>
         </section>
 
         <!-- Mesa de Regalos -->
@@ -716,6 +824,23 @@
             isMusicPlaying = !isMusicPlaying;
         }
 
+        // --- CONTROL DEL VISOR DE FOTOS (LIGHTBOX) ---
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restaura scroll
+        }
+
+        // Cierra lightbox con tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") closeLightbox();
+        });
+
         // Efecto de Partículas 
         function createSparkles() {
             const sections = document.querySelectorAll('.bg-pearl, .bg-champagne, .bg-rosegold');
@@ -774,7 +899,6 @@
         });
 
         // --- SISTEMA ESTRICTO DE PASES ---
-        // Base de Datos extraída de la lista proporcionada
         const dbInvitados = {
             "1": { nombre: "Carlos fuentes", pases: 2 },
             "2": { nombre: "Juan fuentes", pases: 2 },
@@ -885,7 +1009,7 @@
             const inputName = document.getElementById("rsvp-name");
             if(inputName) {
                 inputName.value = nombreInvitado;
-                inputName.disabled = true; // Auto-bloquea la edición para mayor control
+                inputName.disabled = true; 
             }
         } else if (parametroPases && !isNaN(parametroPases)) {
             pasesAsignados = parseInt(parametroPases);
